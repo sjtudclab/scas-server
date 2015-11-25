@@ -19,3 +19,5 @@ target/
 .idea/
 *.iml
 /bin/
+
+profiles/lab/config.properties
