@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<beans:bean id="passwordEncoder"
+		class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+		<beans:constructor-arg value="dclab@sjtu" />
+	</beans:bean>
+
+	<beans:bean id="unauthorizedEntryPoint"
+		class="com.dclab.security.UnauthorizedEntryPoint" />
+
+<!-- 
+	<beans:bean id="successHandler"
+		class="cn.edu.sjtu.se.dclab.server.security.MySavedRequestAwareAuthenticationSuccessHandler">
+	</beans:bean>
+
+	<beans:bean id="failureHandler"
+		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+	</beans:bean>
+
+	<beans:bean id="securityDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="${driverClassName}"></beans:property>
+		<beans:property name="url" value="${url}"></beans:property>
+		<beans:property name="username" value="${username}"></beans:property>
+		<beans:property name="password" value="${password}"></beans:property>
+	</beans:bean>
+ -->	
+	<beans:bean id="userService" class="com.dclab.service.impl.UserServiceImpl" />
+
+	<authentication-manager id="authenticationManager">
+		<authentication-provider user-service-ref="userService">
+			
+			<password-encoder ref="passwordEncoder" />
+			
+			<!-- <jdbc-user-service data-source-ref="securityDataSource"
+				users-by-username-query="select username,password,enabled from user where username=?"
+				authorities-by-username-query="select u.username,p.name from user u,user_role ur, user_role_permission rp,permission p
+				where ur.user_id = u.id and rp.user_role_id = ur.id and rp.permission_id = p.id and u.username = ?" /> -->
+		</authentication-provider>
+	</authentication-manager>
+
+	<http entry-point-ref="unauthorizedEntryPoint" use-expressions="true" auto-config="false" access-denied-page="/users/accessDenied" authentication-manager-ref="authenticationManager">
+		<!--<intercept-url pattern="/start-screen-committee" access="hasRole('start-screen-committee')" />-->
+	</http>
+
+</beans:beans>

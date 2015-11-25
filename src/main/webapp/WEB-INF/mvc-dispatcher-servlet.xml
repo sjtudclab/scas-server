@@ -1,0 +1,88 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd ">
+
+    <context:component-scan base-package="com.dclab"/>
+    <context:annotation-config />
+    <mvc:annotation-driven />
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
+    <!--InternalResourceViewResolver必须总是赋予最低的优先级（最大的order值），
+    因为不管返回什么视图名称，它都将解析视图。如果它的优先级高于其它解析器的优先级的话，
+    它将使得其它具有较低优先级的解析器没有机会解析视图。-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="2" />
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10485760" />
+    </bean>
+
+    <!-- **************************************************************** -->
+    <!--  THYMELEAF-SPECIFIC ARTIFACTS                                    -->
+    <!--  TemplateResolver <- TemplateEngine <- ViewResolver              -->
+    <!-- **************************************************************** -->
+    <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/WEB-INF/pages/templates/" />
+		<property name="suffix" value=".html" />
+        <!-- Template cache is true by default. Set to false if you want
+        templates to be automatically updated when modified. -->
+		<property name="cacheable" value="false" />
+		<property name="characterEncoding" value="UTF-8" />
+		<property name="templateMode" value="LEGACYHTML5" />
+        <property name="order" value="1" />
+	</bean>
+	<bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+	</bean>
+	<bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+		<property name="characterEncoding" value="UTF-8" />
+	</bean>
+
+    <!-- **************************************************************** -->
+    <!-- RESOURCE FOLDERS CONFIGURATION -->
+    <!-- Dispatcher configuration for serving static resources -->
+    <!-- **************************************************************** -->
+    <mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
+    <mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
+
+    <!-- **************************************************************** -->
+    <!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->
+    <!-- Standard Spring MessageSource implementation -->
+    <!-- **************************************************************** -->
+    <!--<bean id="messageSource"
+        class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>Message</value>
+            </list>
+        </property>
+    </bean>-->
+
+    <!-- **************************************************************** -->
+    <!-- CONVERSION SERVICE -->
+    <!-- Standard Spring formatting-enabled implementation -->
+    <!-- **************************************************************** -->
+    <!--
+    <bean id="conversionService"
+        class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                 <bean class="cn.edu.sjtu.se.dclab.seedstarter.VarietyFormatter" />
+                <bean class="cn.edu.sjtu.se.dclab.seedstarter.DateFormatter" />
+            </set>
+        </property>
+    </bean>
+    -->
+
+</beans>
