@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:include="base::#th_base">
+<!-- HEAD**************************************** -->
+<!-- HEAD -->
+<!-- TITLE-->
+<title id="th_title">主页</title>
+<!-- EXTRAHEAD-->
+<div id="th_extrahead">
+<script>
+    $(document).ready(function(){
+        $('#btn_add_admin').click(function(){
+            window.location.href = "/signup"
+        })
+        $('#btn_user_list').click(function(){
+            window.location.href = "#"
+        })
+        $('#btn_apartment_list').click(function(){
+            window.location.href = "#"
+        })
+        $('#btn_personnel_list').click(function(){
+            window.location.href = "#"
+        })
+    })
+</script>
+<style>
+    .placeholders {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .placeholders h4 {
+        margin-bottom: 0;
+    }
+</style>
+</div>
+
+<!-- BODY**************************************** -->
+<!-- NAVIGATION -->
+
+<!-- CONTENT -->
+    <!--SIDE_BAR-->
+
+    <!--CONTENT_CONTAINER-->
+<div id="th_content_container">
+<h1 class="page-header">一级模块</h1>
+
+<div class="row placeholders">
+    <div class="col-xs-6 col-sm-3 placeholder">
+        <button class="btn btn-lg btn-primary btn-block" id="btn_add_admin">注册</button>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder">
+        <button class="btn btn-lg btn-primary btn-block" id="btn_user_list">创建社区</button>
+    </div>
+</div>
+
+<div class="row placeholders">
+    <div class="col-xs-6 col-sm-3 placeholder">
+        <button class="btn btn-lg btn-primary btn-block" id="btn_personnel_list">其他</button>
+    </div>
+</div>
+
+<div class="row placeholders">
+    <div class="col-xs-6 col-sm-3 placeholder">
+        <button class="btn btn-lg btn-primary btn-block" id="btn_apartment_list">其他</button>
+    </div>
+</div>
+
+<h2 class="sub-header">二级模块</h2>
+</div><!-- content_container -->
+
+<!-- FOOTER -->
+
+<!-- EXTRA_STYLE -->
+</html>

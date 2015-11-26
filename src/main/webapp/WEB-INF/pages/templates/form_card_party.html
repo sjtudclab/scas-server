@@ -1,0 +1,60 @@
+
+        <form class="form-horizontal" id="formPartyInfo">
+            <input hidden id="input_user_partycard_id" name="user_partycard_id" type="text" value="{{ user_party_info.partycard_id if user_party_info else 0 }}">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input_party_relation">Party Rel.</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="input_party_relation" type="text" value="{{ user_party_info.relation if user_party_info else '杨浦区XX小区党支部' }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input_party_branch">Branch</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="input_party_branch" type="text" value="{{ user_party_info.party_branch if user_party_info else 'XX党委第一支部' }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input_position">Position</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="input_position" type="text" value="{{ user_party_info.position if user_party_info else '党支书' }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="select_member_type">Type</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="select_member_type" typeVal="{{ user_party_info.type if user_party_info else 1 }}">
+                        <option value="1">党员</option>
+                        <option value="2">预备党员</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input_apply_date">Appl. date</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="input_apply_date" type="date" value="{{ user_party_info.join_date if user_party_info }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input_join_date">Join date</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="input_join_date" type="date" value="{{ user_party_info.confirm_date if user_party_info }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input_inspector">Inspector</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="input_inspector" type="text" value="{{ user_party_info.inspection_person if user_party_info else 'Eugene'}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input_apply_id">Appl. ID</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="input_apply_id" type="text" value="{{ user_party_info.application_id if user_party_info else '1140000' }}">
+                </div>
+            </div>
+            {% if user_party_info.partycard_id %}
+            <button class="btn btn-lg btn-primary btn-block" id="btn_update_partycard">Update All</button>
+            {% else %}
+            <button class="btn btn-lg btn-primary btn-block" id="btn_add_partycard">Add Info</button>
+            {% endif %}
+        </form>

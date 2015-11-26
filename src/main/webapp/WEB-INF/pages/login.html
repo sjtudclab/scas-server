@@ -1,0 +1,66 @@
+{% extends "template/base.html" %}
+
+<!-- HEAD**************************************** -->
+<!-- TITLE-->
+{% block title %}Admin Login{% endblock %}
+<!-- EXTRAHEAD-->
+{% block extrahead %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script>
+    function saveUserInfo() {
+        if ( $("#ckRememberMe").attr("checked") == "checked") {
+            var username = $("#inputUsername").val();
+            var password = $("#inputPassword").val();
+            $.cookie("rememberMe", "true", { expires: 3 }); // 存储一个带3天期限的 cookie
+            $.cookie("username", username, { expires: 3 });
+            $.cookie("password", password, { expires: 3 });
+        } else {
+            $.cookie("rememberMe", "false", { expires: -1 });   // 删除cookie
+            $.cookie("username", '', { expires: -1 });
+            $.cookie("password", '', { expires: -1 });
+        }
+        return true;
+    }
+    $(document).ready(function(){
+        if ($.cookie("rememberMe") == "true") {
+            $("#ckRememberMe").attr("checked", true);
+            $("#inputUsername").val($.cookie("username"));
+            $("#inputPassword").val($.cookie("password"));
+        }
+    })
+</script>
+{% endblock extrahead %}
+
+<!-- BODY**************************************** -->
+<!-- NAVIGATION -->
+{% block navigation %}{% endblock %}
+<!-- CONTENT -->
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form id="formSignIn" action="{{ login_process_url|default('/admin/login') }}" method="post" onsubmit="return saveUserInfo()">
+            <h2>Please sign in</h2>
+            <div class="form-group">
+                <label class="sr-only" for="inputUsername">Username</label>
+                <input class="form-control" id="inputUsername" name="username" type="text" placeholder="Username" required autofocus>
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="inputPassword">Password</label>
+                <input class="form-control" id="inputPassword" name="password" type="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label><input id="ckRememberMe" type="checkbox" value="remember-me"> Remember me</label>
+                </div>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" id="btnSignIn" type="submit">Sign in</button>
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+</div> <!-- /container -->
+{% endblock content %}
+<!-- FOOTER -->

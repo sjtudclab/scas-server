@@ -1,0 +1,33 @@
+
+        <form class="form-horizontal" id="formLivingInfo">
+            <input hidden id="input_user_livingcard_id" name="user_livingcard_id" type="text" value="{{ user_living.livingcard_id if user_living else 0 }}">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input_reside_name">Name</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="input_reside_name" type="text" value="{{ user_living.name if user_living else '上海市杨浦区五角场镇东方名城' }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input_address">Address</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="input_address" type="text" value="{{ user_living.address if user_living else '上海市杨浦区xx路x号' }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input_house_number">House #</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="input_house_number" type="text" value="{{ user_living.house_number if user_living else '6020' }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input_zipcode">Zipcode</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="input_zipcode" type="text" value="{{ user_living.zip_code if user_living else '341900' }}">
+                </div>
+            </div>
+            {% if user_living.livingcard_id %}
+            <button class="btn btn-lg btn-primary btn-block" id="btn_update_living_info">Update All</button>
+            {% else %}
+            <button class="btn btn-lg btn-primary btn-block" id="btn_add_living_info">Add Info</button>
+            {% endif %}
+        </form>

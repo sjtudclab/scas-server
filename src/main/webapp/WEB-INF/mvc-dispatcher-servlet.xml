@@ -17,11 +17,11 @@
     <!--InternalResourceViewResolver必须总是赋予最低的优先级（最大的order值），
     因为不管返回什么视图名称，它都将解析视图。如果它的优先级高于其它解析器的优先级的话，
     它将使得其它具有较低优先级的解析器没有机会解析视图。-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/"/>
-        <property name="suffix" value=".jsp"/>
-        <property name="order" value="2" />
-    </bean>
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="prefix" value="/WEB-INF/pages/"/>-->
+        <!--<property name="suffix" value=".jsp"/>-->
+        <!--<property name="order" value="1" />-->
+    <!--</bean>-->
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="10485760" />
@@ -39,7 +39,7 @@
 		<property name="cacheable" value="false" />
 		<property name="characterEncoding" value="UTF-8" />
 		<property name="templateMode" value="LEGACYHTML5" />
-        <property name="order" value="1" />
+        <property name="order" value="0" />
 	</bean>
 	<bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
 		<property name="templateResolver" ref="templateResolver" />

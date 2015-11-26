@@ -1,0 +1,462 @@
+﻿{% extends "template/base.html" %}
+
+<!-- HEAD**************************************** -->
+<!-- TITLE-->
+{% block title %}User Details{% endblock %}
+
+<!-- EXTRAHEAD-->
+{% block extrahead %}
+<script>
+    $(document).ready(function(){
+        setPartyMemberType()
+        setUserType()
+        setRoleTypeId()
+        setRolePositionId()
+        setResidentSelectedValues()
+
+        /* 插入数据 */
+        $("#btn_add_partycard").on("click", function(){
+        	$("#formPartyInfo").submit(function(e){
+	            postUserPartyInfo()
+                e.preventDefault(); //STOP default action
+                e.unbind(); //unbind. to stop multiple form submit.
+	            return true //为了不刷新页面则应返回false
+	        })
+        })
+        $("#btn_add_living_info").on("click", function(){
+        	$("#formLivingInfo").submit(function(e){
+	            postUserLivingInfo()
+                e.preventDefault(); //STOP default action
+                e.unbind(); //unbind. to stop multiple form submit.
+	            return true //为了不刷新页面则应返回false
+	        })
+        })
+        $("#btn_add_net_info").on("click", function(){
+        	$("#formNetInfo").submit(function(e){
+	            postUserNetInfo()
+                e.preventDefault(); //STOP default action
+                e.unbind(); //unbind. to stop multiple form submit.
+	            return true //为了不刷新页面则应返回false
+	        })
+        })
+        $("#btn_add_resident_info").on("click", function(){
+        	$("#formResidentInfo").submit(function(e){
+	            postUserResidentInfo()
+                e.preventDefault(); //STOP default action
+                e.unbind(); //unbind. to stop multiple form submit.
+	            return true //为了不刷新页面则应返回false
+	        })
+        })
+        $("#btn_add_user_role").on("click", function(){
+        	$("#formRoleInfo").submit(function(e){
+	            postUserRoleInfo()
+                e.preventDefault(); //STOP default action
+                e.unbind(); //unbind. to stop multiple form submit.
+	            return true //为了不刷新页面则应返回false
+	        })
+        })
+        function postUserPartyInfo(){
+            $.ajax({
+                type: "POST",
+                url: "/admin/user/partycard",
+                data: {
+                    "user_id":getUserId(),
+                    "relation":$("#input_party_relation").val(),
+                    "party_branch":$("#input_party_branch").val(),
+                    "position":$("#input_position").val(),
+                    "type":$("#select_member_type").val(),
+                    "join_date":$("#input_apply_date").val(),
+                    "confirm_date":$("#input_join_date").val(),
+                    "inspection_person":$("#input_inspector").val(),
+                    "application_id":$("#input_apply_id").val(),
+                },
+                success: function () {
+                    alert("Add user party information success.")
+                }
+            })
+        }
+        function postUserLivingInfo(){
+            $.ajax({
+                type: "POST",
+                url: "/admin/user/livingcard",
+                data: {
+                    "user_id":getUserId(),
+                    "name":$("#input_reside_name").val(),
+                    "address":$("#input_address").val(),
+                    "house_number":$("#input_house_number").val(),
+                    "zip_code":$("#input_zipcode").val()
+                },
+                success: function () {
+                    alert("Add user Reside card success.")
+                    window.location.reload()
+                }
+            })
+        }
+        function postUserNetInfo(){
+            $.ajax({
+                type: "POST",
+                url: "/admin/user/netcard",
+                data: {
+                    "user_id":getUserId(),
+                    "nickname":$("#input_nickname").val(),
+                    "commuity_user_id":$("#input_community_id").val(),
+                },
+                success: function () {
+                    alert("Add user net card success.")
+                    window.location.reload()
+                }
+            })
+        }
+        function postUserResidentInfo(){
+            $.ajax({
+                type: "POST",
+                url: "/admin/user/citizen",
+                data: {
+                    "user_id":getUserId(),
+                    "identification_type":$("#select_identification_type").val(),
+                    "identification_value":$("#input_identification_value").val(),
+                    "marriage_status":$("#select_marriage").val(),
+                    "employment_status":$("#select_employment").val(),
+                    "residence_category":$("#select_residence_type").val(),
+                    "resident_status":$("#select_residence_status").val(),
+                    "education_status":$("#select_education").val(),
+                    "politics_status":$("#select_party").val(),
+                    "migration_status":$("#select_nationality").val(),
+                    "income_status":$("#select_income_status").val(),
+                    "nation":$("#select_nation").val(),
+                    "gender":$("#select_gender").val(),
+                    "phone":$("#input_phone").val(),
+                    "age":$("#input_age").val()
+                },
+                success: function () {
+                    alert("Add user resident information success.")
+                    window.location.reload()
+                }
+            })
+        }
+        function postUserRoleInfo(){
+            $.ajax({
+                type: "POST",
+                url: "/admin/user/role",
+                data: {
+                    "user_id":getUserId(),
+                    //"role_type_id":$("#select_role").val(),
+                    "role_id":$("#select_role_position").val(),
+                    //"role_description":$("#input_role_job_description").val(),
+                    "description":$("#input_role_job_block").val(),
+                    "description_detail":$("#input_addr_detail").val()},
+                success: function () {
+                    alert("Add user role information success.")
+                    window.location.reload()
+                }
+            })
+        }
+
+        /* 更新数据 */
+        $("#btn_update_partycard").on("click", function(){
+        	$("#formPartyInfo").submit(function(e){
+	            putUserPartyInfo()
+                e.preventDefault(); //STOP default action
+                e.unbind(); //unbind. to stop multiple form submit.
+	            return true //为了不刷新页面则应返回false
+	        })
+        })
+        $("#btn_update_living_info").on("click", function(){
+        	$("#formLivingInfo").submit(function(e){
+	            putUserLivingInfo()
+                e.preventDefault(); //STOP default action
+                e.unbind(); //unbind. to stop multiple form submit.
+	            return true //为了不刷新页面则应返回false
+	        })
+        })
+        $("#btn_update_net_info").on("click", function(){
+        	$("#formNetInfo").submit(function(e){
+	            putUserNetInfo()
+                e.preventDefault(); //STOP default action
+                e.unbind(); //unbind. to stop multiple form submit.
+	            return true //为了不刷新页面则应返回false
+	        })
+        })
+        $("#btn_update_resident_info").on("click", function(){
+        	$("#formResidentInfo").submit(function(e){
+	            putUserResidentInfo()
+                e.preventDefault(); //STOP default action
+                e.unbind(); //unbind. to stop multiple form submit.
+	            return false //为了不刷新页面,返回false
+	        })
+        })
+        $("#btn_update_user_role").on("click", function(){
+        	$("#formRoleInfo").submit(function(e){
+	            putUserRoleInfo()
+                e.preventDefault(); //STOP default action
+                e.unbind(); //unbind. to stop multiple form submit.
+	            return true //为了不刷新页面则应返回false
+	        })
+        })
+        $("#btn_update_user_basic").on("click", function(){
+        	$("#formUserBasic").submit(function(e){
+	            putUserBasicInfo()
+                e.preventDefault(); //STOP default action
+                e.unbind(); //unbind. to stop multiple form submit.
+	            return true //为了不刷新页面则应返回false
+	        })
+        })
+        function putUserPartyInfo(){
+            $.ajax({
+                type: "PUT",
+                url: "/admin/user/partycard/" + getPartyCardId(),
+                data: {
+                    "relation":$("#input_party_relation").val(),
+                    "party_branch":$("#input_party_branch").val(),
+                    "position":$("#input_position").val(),
+                    "type":$("#select_member_type").val(),
+                    "join_date":$("#input_apply_date").val(),
+                    "confirm_date":$("#input_join_date").val(),
+                    "inspection_person":$("#input_inspector").val(),
+                    "application_id":$("#input_apply_id").val(),
+                },
+                success: function () {
+                    alert("Update user party information success.")
+                }
+            })
+        }
+        function putUserLivingInfo(){
+            $.ajax({
+                type: "PUT",
+                url: "/admin/user/livingcard/" + getLivingCardId(),
+                data: {
+                    "name":$("#input_reside_name").val(),
+                    "address":$("#input_address").val(),
+                    "house_number":$("#input_house_number").val(),
+                    "zip_code":$("#input_zipcode").val()
+                },
+                success: function () {
+                    alert("Update user Reside card success.")
+                }
+            })
+        }
+        function putUserNetInfo(){
+            $.ajax({
+                type: "PUT",
+                url: "/admin/user/netcard/" + getNetCardId(),
+                data: {
+                    "nickname":$("#input_nickname").val(),
+                    "commuity_user_id":$("#input_community_id").val(),
+                },
+                success: function () {
+                    alert("Update user net card success.")
+                }
+            })
+        }
+        function putUserResidentInfo(){
+            $.ajax({
+                type: "PUT",
+                url: "/admin/user/citizen/" + getCitizenId(),
+                data: {
+                    "identification_type":$("#select_identification_type").val(),
+                    "identification_value":$("#input_identification_value").val(),
+                    "marriage_status":$("#select_marriage").val(),
+                    "employment_status":$("#select_employment").val(),
+                    "residence_category":$("#select_residence_type").val(),
+                    "resident_status":$("#select_residence_status").val(),
+                    "education_status":$("#select_education").val(),
+                    "politics_status":$("#select_party").val(),
+                    "migration_status":$("#select_nationality").val(),
+                    "income_status":$("#select_income_status").val(),
+                    "nation":$("#select_nation").val(),
+                    "gender":$("#select_gender").val(),
+                    "phone":$("#input_phone").val(),
+                    "age":$("#input_age").val()
+                },
+                success: function () {
+                    alert("Update user resident information success.")
+                }
+            })
+        }
+        function putUserRoleInfo(){
+            $.ajax({
+                type: "PUT",
+                url: "/admin/user/role/" + getUserRoleId(),
+                data: {"role_type_id":$("#select_role").val(),
+                    "role_id":$("#select_role_position").val(),
+                    "role_description":$("#input_role_job_description").val(),
+                    "user_role_description":$("#input_role_job_block").val(),
+                    "description_detail":$("#input_addr_detail").val()},
+                success: function () {
+                    alert("Update user role information success.")
+                }
+            })
+        }
+        function putUserBasicInfo(){
+            $.ajax({
+                type: "PUT",
+                url: "/admin/user/" + getUserId(),
+                //contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {"password":$("#input_password").val(),
+                    "email":$("#input_email").val(),
+                    "name":$("#input_name").val(),
+                    "identity_number":$("#input_identity_number").val(),
+                    "card_id":$("#input_card_id").val(),
+                    "user_type_id":$("#select_user_type").val(),
+                    "image":'default.jpg'},
+                success: function () {
+                    alert("Update user basic information success.")
+                }
+            })
+        }
+
+        function setPartyMemberType(){
+            var member_type_id = $("#select_member_type").attr("typeVal")
+            $("#select_member_type").val(member_type_id)
+        }
+        function setRolePositionId(){
+            var role_position_id = $("#select_role_position").attr("rolePositionVal")
+            $("#select_role_position").val(role_position_id)
+        }
+        function setRoleTypeId(){
+            var role_type_id = $("#select_role").attr("roleTypeVal")
+            $("#select_role").val(role_type_id)
+        }
+        function setUserType(){
+            var optionText = $("#select_user_type").attr("optionText")
+            switch(optionText){
+                case "management":
+                    $("#select_user_type").val("1")
+                    break
+                case "service":
+                    $("#select_user_type").val("2")
+                    break
+                case "resident":
+                    $("#select_user_type").val("3")
+                    break
+                default :
+                    break
+            }
+        }
+        function setResidentSelectedValues(){
+            var genderVal = $("#select_gender").attr("genderVal")
+            $("#select_gender").val(genderVal)
+
+            var idTypeVal = $("#select_identification_type").attr("idTypeVal")
+            $("#select_identification_type").val(idTypeVal)
+
+            var marriageVal = $("#select_marriage").attr("marriageVal")
+            $("#select_marriage").val(marriageVal)
+
+            var employmentVal = $("#select_employment").attr("employmentVal")
+            $("#select_employment").val(employmentVal)
+
+            var residentTypeVal = $("#select_residence_type").attr("residentTypeVal")
+            $("#select_residence_type").val(residentTypeVal)
+
+            var residenceStatusVal = $("#select_residence_status").attr("residenceStatusVal")
+            $("#select_residence_status").val(residenceStatusVal)
+
+            var educationVal = $("#select_education").attr("educationVal")
+            $("#select_education").val(educationVal)
+
+            var partyVal = $("#select_party").attr("partyVal")
+            $("#select_party").val(partyVal)
+
+            var nationalityVal = $("#select_nationality").attr("nationalityVal")
+            $("#select_nationality").val(nationalityVal)
+
+            var incomeStatusVal = $("#select_income_status").attr("incomeStatusVal")
+            $("#select_income_status").val(incomeStatusVal)
+
+            var nationVal = $("#select_nation").attr("nationVal")
+            $("#select_nation").val(nationVal)
+        }
+        function getUserId(){
+            var url = window.location.href
+            var strs = url.toString().split("/")
+            return strs[strs.length - 1]
+        }
+        function getUserRoleId(){
+            return $("#input_user_role_id").val()
+        }
+        function getCitizenId(){
+            return $("#input_citizen_id").val()
+        }
+        function getNetCardId(){
+            return $("#input_user_netcard_id").val()
+        }
+        function getLivingCardId(){
+            return $("#input_user_livingcard_id").val()
+        }
+        function getPartyCardId(){
+            return $("#input_user_partycard_id").val()
+        }
+    })
+</script>
+{% endblock %}
+
+<!-- BODY**************************************** -->
+<!-- NAVIGATION -->
+
+<!-- CONTENT -->
+    <!--SIDE_BAR-->
+
+    <!--CONTENT_CONTAINER-->
+    {% block content_container %}
+<h1 class="page-header">User Details</h1>
+
+{% if user %}
+<div class="row placeholders">
+    <div class="col-xs-5 col-sm-5 placeholder">
+        <!--Basic Infomation-->
+        <h3 class="sub-header text-left">Basic Infomation</h3>
+        {% include "template/form_user_basic.html" %}
+        <!--Real Name Card-->
+        <!--<h3 class="sub-header text-left">Name Card</h3>-->
+        {# {% include "template/form_card_realname.html" %} #}
+    </div>
+
+    <div class="col-xs-5 col-xs-offset-1 col-sm-5 col-sm-offset-1 placeholder">
+        <!--Resident Information-->
+        <h3 class="sub-header text-left">Resident Information</h3>
+        {% include "template/form_resident.html" %}
+    </div>
+</div><!--row-->
+
+<div class="row placeholders">
+    <div class="col-xs-5 col-sm-5 placeholder">
+        <!--Net Card-->
+        <h3 class="sub-header text-left">Net Card</h3>
+        {% include "template/form_card_net.html" %}
+        <!--Reside Card-->
+        <h3 class="sub-header text-left">Reside Card</h3>
+        {% include "template/form_card_reside.html" %}
+    </div>
+
+    <div class="col-xs-5 col-xs-offset-1 col-sm-5 col-sm-offset-1 placeholder">
+        <!--Party Card-->
+        <h3 class="sub-header text-left">Party Card</h3>
+        {% include "template/form_card_party.html" %}
+    </div>
+</div><!--row-->
+
+<div class="row placeholders">
+    <div class="col-xs-5 col-sm-5 placeholder">
+        <!--Role Information-->
+        <h3 class="sub-header text-left">Role Information</h3>
+        {% include "template/form_role.html" %}
+    </div>
+
+    <div class="col-xs-5 col-xs-offset-1 col-sm-5 col-sm-offset-1 placeholder">
+    </div>
+</div><!--row-->
+{% endif %}
+    {% endblock content_container %}
+
+<!-- FOOTER -->
+
+<!-- EXTRA_STYLE -->
+{% block extra_style %}
+{{ super() }}
+<style>
+    .form-horizontal img{
+        max-height: 64px;max-width: 64px;
+    }
+</style>
+{% endblock %}
