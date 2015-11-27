@@ -2,12 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.edu.sjtu.se.dclab.server.mapper.UserMapper">
+<mapper namespace="com.dclab.mapper.UserMapper">
 
     <select id="findByUserName" resultMap="UserMap">
         SELECT * FROM user
         WHERE username = #{username}
     </select>
+
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="User">
+        INSERT INTO user
+        (username, password, salt, name, status, enabled,note,email,image)
+        VALUES
+        (#{username}, #{password}, #{salt}, #{name}, #{status}, #{enabled},
+        #{note},#{email}, #{image});
+    </insert>
 
     <resultMap id="UserMap" type="User">
         <id property="id" column="user_id" />
@@ -21,5 +29,5 @@
         <result property="enabled" column="enabled" />
         <result property="image" column="image" />
     </resultMap>
-    
+
 </mapper>

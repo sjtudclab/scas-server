@@ -53,6 +53,7 @@
     <!-- RESOURCE FOLDERS CONFIGURATION -->
     <!-- Dispatcher configuration for serving static resources -->
     <!-- **************************************************************** -->
+    <mvc:resources location="/WEB-INF/pages/" mapping="/scas-server/**" />
     <mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
     <mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
 

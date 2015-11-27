@@ -1,4 +1,4 @@
-package com.dclab.mapper;
+package com.dclab.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

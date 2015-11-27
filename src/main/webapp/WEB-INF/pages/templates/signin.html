@@ -6,30 +6,6 @@
 <title id="th_title">登录</title>
 <!-- EXTRAHEAD-->
 <div id="th_extrahead">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script>
-    function saveUserInfo() {
-        if ( $("#ckRememberMe").attr("checked") == "checked") {
-            var username = $("#inputUsername").val();
-            var password = $("#inputPassword").val();
-            $.cookie("rememberMe", "true", { expires: 3 }); // 存储一个带3天期限的 cookie
-            $.cookie("username", username, { expires: 3 });
-            $.cookie("password", password, { expires: 3 });
-        } else {
-            $.cookie("rememberMe", "false", { expires: -1 });   // 删除cookie
-            $.cookie("username", '', { expires: -1 });
-            $.cookie("password", '', { expires: -1 });
-        }
-        return true;
-    }
-    $(document).ready(function(){
-        if ($.cookie("rememberMe") == "true") {
-            $("#ckRememberMe").attr("checked", true);
-            $("#inputUsername").val($.cookie("username"));
-            $("#inputPassword").val($.cookie("password"));
-        }
-    })
-</script>
 </div>
 </head>
 <!-- BODY**************************************** -->
@@ -40,8 +16,9 @@
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-        <form id="formSignIn" action="/home" method="post" onsubmit="return saveUserInfo()">
-            <h2>请登录</h2>
+        <form id="formSignIn" action="" method="" onsubmit="return saveUserInfo()">
+            <h1>智慧社区应用服务门户</h1>
+            <h3>请登录</h3>
             <div class="form-group">
                 <label class="sr-only" for="inputUsername">账号</label>
                 <input class="form-control" id="inputUsername" name="username" type="text" placeholder="账号" required="required" autofocus="autofocus"/>
@@ -56,6 +33,7 @@
                 </div>
             </div>
             <button class="btn btn-lg btn-primary btn-block" id="btnSignIn" type="submit">登录</button>
+        	<a class="btn btn-lg btn-primary btn-block" id="" href="/signup">注册</button>
         	<a class="btn btn-lg btn-primary btn-block" id="" href="/home">主页</button>
         </form>
     </div>
@@ -65,5 +43,54 @@
 </div> <!-- /container -->
 <!-- FOOTER -->
 <!-- EXTRA_STYLE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script>
+    $(document).ready(function(){
+        if ($.cookie("rememberMe") == "true") {
+            $("#ckRememberMe").attr("checked", true);
+            $("#inputUsername").val($.cookie("username"));
+            $("#inputPassword").val($.cookie("password"));
+        }
+        postSigninInfo()
+    })
+    function saveUserInfo() {
+        if ( $("#ckRememberMe").attr("checked") == "checked") {
+            var username = $("#inputUsername").val();
+            var password = $("#inputPassword").val();
+            $.cookie("rememberMe", "true", { expires: 3 }); // 存储一个带3天期限的 cookie
+            $.cookie("username", username, { expires: 3 });
+            $.cookie("password", password, { expires: 3 });
+        } else {
+            $.cookie("rememberMe", "false", { expires: -1 });   // 删除cookie
+            $.cookie("username", '', { expires: -1 });
+            $.cookie("password", '', { expires: -1 });
+        }
+        return true;
+    }
+    function postSigninInfo(){
+    	$('#formSignIn').on('submit', function(event){
+//	        alert('login now ...');
+	        var username = $('#inputUsername').val()
+	        var password = $('#inputPassword').val()
+	        $.ajax({
+	            type: "POST",
+	            url: "/signin",
+	            data:  JSON.stringify({
+	                "username":username,
+	                "password":password,
+	            }),
+	            contentType: "application/json",
+	            success: function() {
+	                console.log('Redirect to homepage')
+	                window.location.href="/home";
+	            },
+	            error: function(error) {
+	                console.log('Oops')
+	            }
+	        })
+        	event.preventDefault()
+    	})
+    }
+</script>
 </body>
 </html>

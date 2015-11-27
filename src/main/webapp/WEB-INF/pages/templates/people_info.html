@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:include="base::#th_base">
+<!-- HEAD**************************************** -->
+<!-- HEAD -->
+<!-- TITLE-->
+<title id="th_title">人员基本信息录入</title>
+<!-- EXTRAHEAD-->
+<div id="th_extrahead">
+<script></script>
+<style>
+    .form-horizontal img{
+        max-height: 64px;max-width: 64px;
+    }
+</style>
+</div>
+
+<!-- BODY**************************************** -->
+<!-- NAVIGATION -->
+
+<!-- CONTENT -->
+    <!--SIDE_BAR-->
+
+    <!--CONTENT_CONTAINER-->
+    <div id="th_content_container">
+    	
+<h1 class="page-header">人员基本信息录入</h1>
+
+<div class="row placeholders">
+    <div class="col-xs-7 col-sm-7 placeholder">
+        <!--Basic Infomation-->
+        <h3 class="sub-header text-left">生活群众</h3>
+        <div th:replace="form_resident::#th_form_resident"></div>
+        <h3 class="sub-header text-left">管理群众</h3>
+        <div th:replace="form_resident::#th_form_resident"></div>
+        <h3 class="sub-header text-left">服务群众</h3>
+        <div th:replace="form_resident::#th_form_resident"></div>
+        
+        <button class="btn btn-lg btn-primary btn-block" id="btn_add_net_info">确认</button>
+    </div>
+
+    <!--<div class="col-xs-5 col-xs-offset-1 col-sm-5 col-sm-offset-1 placeholder">
+        <h3 class="sub-header text-left">Resident Information</h3>
+        {% include "template/form_resident.html" %}
+    </div>-->
+</div><!--row-->
+
+    </div>
+
+<!-- FOOTER -->
+
+<!-- EXTRA_STYLE -->
+</html>

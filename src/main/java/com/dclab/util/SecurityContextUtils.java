@@ -1,6 +1,6 @@
 package com.dclab.util;
 
-import com.dclab.mapper.User;
+import com.dclab.entity.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 

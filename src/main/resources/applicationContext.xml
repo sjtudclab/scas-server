@@ -43,7 +43,7 @@
 
 	<!-- scan mapper annotations automatically and let them be autowired -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="cn.edu.sjtu.se.dclab.server.mapper" />
+		<property name="basePackage" value="com.dclab.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
