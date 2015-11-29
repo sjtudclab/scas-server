@@ -15,13 +15,11 @@
 	<context:annotation-config />
 	<context:component-scan base-package="com.dclab" />
 
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations" value="classpath:jdbc.properties" />
 	</bean>
 
-	<bean id="userDataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
+	<bean id="userDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${driverClassName}"></property>
 		<property name="url" value="${url}"></property>
 		<property name="username" value="${username}"></property>
@@ -29,16 +27,14 @@
 		<property name="defaultAutoCommit" value="false" />
 	</bean>
 
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="userDataSource" />
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="userDataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
-		<property name="mapperLocations"
-			value="classpath:com/dclab/mapper/xml/*.xml" />
+		<property name="mapperLocations" value="classpath:com/dclab/mapper/xml/*.xml" />
 	</bean>
 
 	<!-- scan mapper annotations automatically and let them be autowired -->

@@ -33,8 +33,8 @@
                 </div>
             </div>
             <button class="btn btn-lg btn-primary btn-block" id="btnSignIn" type="submit">登录</button>
-        	<a class="btn btn-lg btn-primary btn-block" id="" href="/signup">注册</button>
-        	<a class="btn btn-lg btn-primary btn-block" id="" href="/home">主页</button>
+        	<a class="btn btn-lg btn-primary btn-block" id="" href="/signup" th:href="@{/signup}">注册</button>
+        	<a class="btn btn-lg btn-primary btn-block" id="" href="/home" th:href="@{/home}">主页</button>
         </form>
     </div>
     <div class="col-md-4"></div>
@@ -74,7 +74,7 @@
 	        var password = $('#inputPassword').val()
 	        $.ajax({
 	            type: "POST",
-	            url: "/signin",
+	            url: "/scas-server/signin",
 	            data:  JSON.stringify({
 	                "username":username,
 	                "password":password,
@@ -82,7 +82,7 @@
 	            contentType: "application/json",
 	            success: function() {
 	                console.log('Redirect to homepage')
-	                window.location.href="/home";
+	                window.location.href="/scas-server/home";
 	            },
 	            error: function(error) {
 	                console.log('Oops')

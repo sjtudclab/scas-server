@@ -92,7 +92,7 @@
         var email = $('#inputEmail').val();
         $.ajax({
             type: "POST",
-            url: "/signup",
+            url: "/scas-server/signup",
             data:  JSON.stringify({
                 "username":username,
                 "password":password,
@@ -101,7 +101,7 @@
             contentType: "application/json",
             success: function() {
                 console.log('Redirect to Login');
-                window.location.href="/signin";
+                window.location.href="/scas-server/signin";
             },
             error: function(error) {
                 console.log('Oops');

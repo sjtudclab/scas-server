@@ -1,6 +1,10 @@
 package com.dclab.controller;
 
+import com.dclab.entity.Community;
+import com.dclab.service.CommunityCreateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -9,10 +13,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class CommunityCreateController {
+    @Autowired
+    private CommunityCreateService communityCreateService;
 
     @RequestMapping(value = "/create/community", method = RequestMethod.GET)
-    public String createCommunityBasic() {
-//		model.addAttribute("message", "Hello world!");
+    public String createCommunityBasic(ModelMap map) {
+        map.addAttribute("community", new Community("test1", "test1"));
+        return "community_info";
+    }
+    @RequestMapping(value = "/create/community", method = RequestMethod.POST)
+    public String doCreateCommunityBasic(ModelMap map) {
+        Community community = new Community("xx", "xx");
+        int result = communityCreateService.saveNewCommunity(community);
         return "community_info";
     }
 

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dclab.mapper.CommunityMapper" >
+  <resultMap id="BaseResultMap" type="com.dclab.entity.Community" >
+    <id column="comm_id" property="commId" jdbcType="INTEGER" />
+    <result column="comm_name" property="commName" jdbcType="VARCHAR" />
+    <result column="comm_address" property="commAddress" jdbcType="VARCHAR" />
+    <result column="comm_code_province" property="commCodeProvince" jdbcType="VARCHAR" />
+    <result column="com_code_city" property="comCodeCity" jdbcType="VARCHAR" />
+    <result column="comm_code_district" property="commCodeDistrict" jdbcType="VARCHAR" />
+    <result column="comm_code_community" property="commCodeCommunity" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    comm_id, comm_name, comm_address, comm_code_province, com_code_city, comm_code_district, 
+    comm_code_community
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from community
+    where comm_id = #{commId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from community
+    where comm_id = #{commId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dclab.entity.Community" >
+    insert into community (comm_id, comm_name, comm_address, 
+      comm_code_province, com_code_city, comm_code_district, 
+      comm_code_community)
+    values (#{commId,jdbcType=INTEGER}, #{commName,jdbcType=VARCHAR}, #{commAddress,jdbcType=VARCHAR}, 
+      #{commCodeProvince,jdbcType=VARCHAR}, #{comCodeCity,jdbcType=VARCHAR}, #{commCodeDistrict,jdbcType=VARCHAR}, 
+      #{commCodeCommunity,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dclab.entity.Community" >
+    insert into community
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commId != null" >
+        comm_id,
+      </if>
+      <if test="commName != null" >
+        comm_name,
+      </if>
+      <if test="commAddress != null" >
+        comm_address,
+      </if>
+      <if test="commCodeProvince != null" >
+        comm_code_province,
+      </if>
+      <if test="comCodeCity != null" >
+        com_code_city,
+      </if>
+      <if test="commCodeDistrict != null" >
+        comm_code_district,
+      </if>
+      <if test="commCodeCommunity != null" >
+        comm_code_community,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commId != null" >
+        #{commId,jdbcType=INTEGER},
+      </if>
+      <if test="commName != null" >
+        #{commName,jdbcType=VARCHAR},
+      </if>
+      <if test="commAddress != null" >
+        #{commAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="commCodeProvince != null" >
+        #{commCodeProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="comCodeCity != null" >
+        #{comCodeCity,jdbcType=VARCHAR},
+      </if>
+      <if test="commCodeDistrict != null" >
+        #{commCodeDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="commCodeCommunity != null" >
+        #{commCodeCommunity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dclab.entity.Community" >
+    update community
+    <set >
+      <if test="commName != null" >
+        comm_name = #{commName,jdbcType=VARCHAR},
+      </if>
+      <if test="commAddress != null" >
+        comm_address = #{commAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="commCodeProvince != null" >
+        comm_code_province = #{commCodeProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="comCodeCity != null" >
+        com_code_city = #{comCodeCity,jdbcType=VARCHAR},
+      </if>
+      <if test="commCodeDistrict != null" >
+        comm_code_district = #{commCodeDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="commCodeCommunity != null" >
+        comm_code_community = #{commCodeCommunity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where comm_id = #{commId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dclab.entity.Community" >
+    update community
+    set comm_name = #{commName,jdbcType=VARCHAR},
+      comm_address = #{commAddress,jdbcType=VARCHAR},
+      comm_code_province = #{commCodeProvince,jdbcType=VARCHAR},
+      com_code_city = #{comCodeCity,jdbcType=VARCHAR},
+      comm_code_district = #{commCodeDistrict,jdbcType=VARCHAR},
+      comm_code_community = #{commCodeCommunity,jdbcType=VARCHAR}
+    where comm_id = #{commId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -56,34 +56,32 @@
     <mvc:resources location="/WEB-INF/pages/" mapping="/scas-server/**" />
     <mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
     <mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
 
     <!-- **************************************************************** -->
     <!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->
     <!-- Standard Spring MessageSource implementation -->
     <!-- **************************************************************** -->
-    <!--<bean id="messageSource"
-        class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basenames">
-            <list>
-                <value>Message</value>
-            </list>
-        </property>
-    </bean>-->
+    <!--<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">-->
+        <!--<property name="basenames">-->
+            <!--<list>-->
+                <!--<value>Message</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
 
     <!-- **************************************************************** -->
     <!-- CONVERSION SERVICE -->
     <!-- Standard Spring formatting-enabled implementation -->
     <!-- **************************************************************** -->
-    <!--
-    <bean id="conversionService"
-        class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-        <property name="formatters">
-            <set>
-                 <bean class="cn.edu.sjtu.se.dclab.seedstarter.VarietyFormatter" />
-                <bean class="cn.edu.sjtu.se.dclab.seedstarter.DateFormatter" />
-            </set>
-        </property>
-    </bean>
-    -->
+    <!--<bean id="conversionService"-->
+        <!--class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
+        <!--<property name="formatters">-->
+            <!--<set>-->
+                 <!--<bean class="cn.edu.sjtu.se.dclab.seedstarter.VarietyFormatter" />-->
+                <!--<bean class="cn.edu.sjtu.se.dclab.seedstarter.DateFormatter" />-->
+            <!--</set>-->
+        <!--</property>-->
+    <!--</bean>-->
 
 </beans>

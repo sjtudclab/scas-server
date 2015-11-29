@@ -4,13 +4,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-	<beans:bean id="passwordEncoder"
-		class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder">
 		<beans:constructor-arg value="dclab@sjtu" />
 	</beans:bean>
 
-	<beans:bean id="unauthorizedEntryPoint"
-		class="com.dclab.security.UnauthorizedEntryPoint" />
+	<beans:bean id="unauthorizedEntryPoint" class="com.dclab.security.UnauthorizedEntryPoint" />
 
 <!-- 
 	<beans:bean id="successHandler"

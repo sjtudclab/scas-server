@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	
+
 	<form class="form-horizontal" id="th_form_community">
         <input hidden id="input_user_netcard_id" name="user_netcard_id" type="text" value="0">
         <div class="form-group">
             <label class="col-sm-3 control-label" for="input_nickname">名称</label>
             <div class="col-sm-9">
-                <input class="form-control" id="input_nickname" type="text" value="东方名城">
+                <input class="form-control" id="input_nickname" type="text" value="东方名城" th:value="${community.commName}">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label" for="input_community_id">地址</label>
             <div class="col-sm-9">
-                <input class="form-control" id="input_community_id" type="text" value="">
+                <input class="form-control" id="input_community_id" type="text" value="" th:value="${community.commAddress}">
             </div>
         </div>
         <div class="form-group">
