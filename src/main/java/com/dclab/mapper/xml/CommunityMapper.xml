@@ -6,12 +6,12 @@
     <result column="comm_name" property="commName" jdbcType="VARCHAR" />
     <result column="comm_address" property="commAddress" jdbcType="VARCHAR" />
     <result column="comm_code_province" property="commCodeProvince" jdbcType="VARCHAR" />
-    <result column="com_code_city" property="comCodeCity" jdbcType="VARCHAR" />
+    <result column="comm_code_city" property="commCodeCity" jdbcType="VARCHAR" />
     <result column="comm_code_district" property="commCodeDistrict" jdbcType="VARCHAR" />
     <result column="comm_code_community" property="commCodeCommunity" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    comm_id, comm_name, comm_address, comm_code_province, com_code_city, comm_code_district, 
+    comm_id, comm_name, comm_address, comm_code_province, comm_code_city, comm_code_district, 
     comm_code_community
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -26,10 +26,10 @@
   </delete>
   <insert id="insert" parameterType="com.dclab.entity.Community" >
     insert into community (comm_id, comm_name, comm_address, 
-      comm_code_province, com_code_city, comm_code_district, 
+      comm_code_province, comm_code_city, comm_code_district, 
       comm_code_community)
     values (#{commId,jdbcType=INTEGER}, #{commName,jdbcType=VARCHAR}, #{commAddress,jdbcType=VARCHAR}, 
-      #{commCodeProvince,jdbcType=VARCHAR}, #{comCodeCity,jdbcType=VARCHAR}, #{commCodeDistrict,jdbcType=VARCHAR}, 
+      #{commCodeProvince,jdbcType=VARCHAR}, #{commCodeCity,jdbcType=VARCHAR}, #{commCodeDistrict,jdbcType=VARCHAR}, 
       #{commCodeCommunity,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dclab.entity.Community" >
@@ -47,8 +47,8 @@
       <if test="commCodeProvince != null" >
         comm_code_province,
       </if>
-      <if test="comCodeCity != null" >
-        com_code_city,
+      <if test="commCodeCity != null" >
+        comm_code_city,
       </if>
       <if test="commCodeDistrict != null" >
         comm_code_district,
@@ -70,8 +70,8 @@
       <if test="commCodeProvince != null" >
         #{commCodeProvince,jdbcType=VARCHAR},
       </if>
-      <if test="comCodeCity != null" >
-        #{comCodeCity,jdbcType=VARCHAR},
+      <if test="commCodeCity != null" >
+        #{commCodeCity,jdbcType=VARCHAR},
       </if>
       <if test="commCodeDistrict != null" >
         #{commCodeDistrict,jdbcType=VARCHAR},
@@ -93,8 +93,8 @@
       <if test="commCodeProvince != null" >
         comm_code_province = #{commCodeProvince,jdbcType=VARCHAR},
       </if>
-      <if test="comCodeCity != null" >
-        com_code_city = #{comCodeCity,jdbcType=VARCHAR},
+      <if test="commCodeCity != null" >
+        comm_code_city = #{commCodeCity,jdbcType=VARCHAR},
       </if>
       <if test="commCodeDistrict != null" >
         comm_code_district = #{commCodeDistrict,jdbcType=VARCHAR},
@@ -110,7 +110,7 @@
     set comm_name = #{commName,jdbcType=VARCHAR},
       comm_address = #{commAddress,jdbcType=VARCHAR},
       comm_code_province = #{commCodeProvince,jdbcType=VARCHAR},
-      com_code_city = #{comCodeCity,jdbcType=VARCHAR},
+      comm_code_city = #{commCodeCity,jdbcType=VARCHAR},
       comm_code_district = #{commCodeDistrict,jdbcType=VARCHAR},
       comm_code_community = #{commCodeCommunity,jdbcType=VARCHAR}
     where comm_id = #{commId,jdbcType=INTEGER}

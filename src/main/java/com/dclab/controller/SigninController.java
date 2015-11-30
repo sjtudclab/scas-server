@@ -1,6 +1,7 @@
 package com.dclab.controller;
 
 import com.dclab.common.Result;
+import com.dclab.entity.Admin;
 import com.dclab.entity.User;
 import com.dclab.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,10 @@ public class SigninController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String login(@RequestBody User user, Model model) {
-        User u = userService.checkUser(user);
-        if (u != null) {
-            model.addAttribute(user);
+    public String login(@RequestBody Admin admin, Model model) {
+        Admin a = userService.checkAdmin(admin);
+        if (a != null) {
+            model.addAttribute(admin);
             return Result.SUCCESS;
         } else {
             return "";

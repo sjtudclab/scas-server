@@ -33,8 +33,8 @@
                 </div>
             </div>
             <button class="btn btn-lg btn-primary btn-block" id="btnSignIn" type="submit">登录</button>
-        	<a class="btn btn-lg btn-primary btn-block" id="" href="/signup" th:href="@{/signup}">注册</button>
-        	<a class="btn btn-lg btn-primary btn-block" id="" href="/home" th:href="@{/home}">主页</button>
+        	<a class="btn btn-lg btn-primary btn-block" href="/signup" th:href="@{/signup}">注册</a>
+        	<a class="btn btn-lg btn-primary btn-block" href="/home" th:href="@{/home}">主页</a>
         </form>
     </div>
     <div class="col-md-4"></div>
@@ -76,7 +76,7 @@
 	            type: "POST",
 	            url: "/scas-server/signin",
 	            data:  JSON.stringify({
-	                "username":username,
+	                "adminname":username,
 	                "password":password,
 	            }),
 	            contentType: "application/json",

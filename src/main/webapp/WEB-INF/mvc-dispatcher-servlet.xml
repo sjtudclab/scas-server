@@ -54,9 +54,9 @@
     <!-- Dispatcher configuration for serving static resources -->
     <!-- **************************************************************** -->
     <mvc:resources location="/WEB-INF/pages/" mapping="/scas-server/**" />
-    <mvc:resources location="/WEB-INF/images/" mapping="/images/**" />
-    <mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
-    <mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
+    <mvc:resources location="/WEB-INF/images/" mapping="/scas-server/images/**" />
+    <mvc:resources location="/WEB-INF/css/" mapping="/scas-server/css/**" />
+    <mvc:resources location="/WEB-INF/js/" mapping="/scas-server/js/**" />
 
     <!-- **************************************************************** -->
     <!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->

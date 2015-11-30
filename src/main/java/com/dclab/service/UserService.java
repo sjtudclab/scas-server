@@ -1,5 +1,6 @@
 package com.dclab.service;
 
+import com.dclab.entity.Admin;
 import com.dclab.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -8,6 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  *@author changyi yuan
  */
 public interface UserService extends UserDetailsService{
-    public Boolean registerUser(User user);
-    public User checkUser(User user);
+    public int registerAdmin(Admin admin);
+    public Admin checkAdmin(Admin admin);
 }

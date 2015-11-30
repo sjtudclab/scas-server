@@ -1,6 +1,7 @@
 package com.dclab.controller;
 
 import com.dclab.common.Result;
+import com.dclab.entity.Admin;
 import com.dclab.entity.User;
 import com.dclab.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class SignupController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String register(@RequestBody User user) {
-        userService.registerUser(user);
+    public String register(@RequestBody Admin admin) {
+        userService.registerAdmin(admin);
         return Result.SUCCESS;
     }
 }

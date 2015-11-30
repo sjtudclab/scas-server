@@ -1,7 +1,8 @@
 package com.dclab.service.impl;
 
+import com.dclab.entity.Admin;
 import com.dclab.entity.User;
-import com.dclab.mapper.UserMapper;
+import com.dclab.mapper.AdminMapper;
 import com.dclab.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
-	private UserMapper userMapper;
+	private AdminMapper adminMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -24,15 +25,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Boolean registerUser(User user) {
-		return userMapper.save(user);
+	public int registerAdmin(Admin admin) {
+		return adminMapper.insertSelective(admin);
 	}
 
 	@Override
-	public User checkUser(User user){
-		User u = userMapper.findByUserName(user.getUsername());
-		if (u!=null && user.getPassword().equals(u.getPassword()))
-			return u;
+	public Admin checkAdmin(Admin admin) {
+		Admin a = adminMapper.findByAdminName(admin.getAdminname());
+		if (a!=null && admin.getPassword().equals(a.getPassword()))
+			return a;
 		return null;
 	}
 }

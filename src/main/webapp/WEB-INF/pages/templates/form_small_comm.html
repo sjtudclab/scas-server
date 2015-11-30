@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<form class="form-horizontal" id="th_form_small_comm" action="#" th:action="@{/create/small_community}"
+          th:object="${neighbourhood}" method="post">
+        <input hidden id="input_user_netcard_id" name="user_netcard_id" type="text" value="1" th:value="*{commId}?:'1'"
+                th:field="*{commId}">
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="input_nickname">名称</label>
+            <div class="col-sm-9">
+                <input class="form-control" id="input_nickname" type="text" placeholder="东方名城小区A"
+                       th:field="*{neigName}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="input_community_id">地址</label>
+            <div class="col-sm-9">
+                <input class="form-control" id="input_community_id" type="text" placeholder=""
+                       th:field="*{neigAddress}">
+            </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" id="btn_add_net_info" type="submit">确认</button>
+        <!--<button class="btn btn-lg btn-primary btn-block" id="btn_update_net_info">Update All</button>-->
+
+    </form>
+
+</html>
+
+        

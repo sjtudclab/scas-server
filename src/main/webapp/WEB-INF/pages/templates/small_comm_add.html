@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:include="base::#th_base">
+<!-- HEAD**************************************** -->
+<!-- HEAD -->
+<!-- TITLE-->
+<title id="th_title">小区信息</title>
+<!-- EXTRAHEAD-->
+<div id="th_extrahead">
+<script>
+    $(document).ready(function(){
+        $('#tbody_building_edit').find('tr .btn_edit').click(function(event){
+            user_id = $(this).parent().parent().children(":first").text()
+            console.log(user_id)
+            window.location.href = "/edit/building"
+//          	+ user_id
+        })
+        $('#tbody_user_edit').find('tr .btn_remove').click(function(event){
+            user_id = $(this).parent().parent().children(":first").text()
+            console.log(user_id)
+            alert('Are you sure to delete user ' + user_id + '?')
+//            window.location.href = "/admin/user/delete/" + user_id
+        })
+        $('#btn_add_user').click(function(){
+            window.location.href = "#"
+        })
+    })
+</script>
+<style>
+    .form-horizontal img{
+        max-height: 64px;max-width: 64px;
+    }
+</style>
+</div>
+
+<!-- BODY**************************************** -->
+<!-- NAVIGATION -->
+
+<!-- CONTENT -->
+    <!--SIDE_BAR-->
+
+    <!--CONTENT_CONTAINER-->
+    <div id="th_content_container">
+    	
+<h1 class="page-header">小区信息</h1>
+
+<div class="row placeholders">
+
+    <div class="col-xs-7 col-sm-7 placeholder">
+        <h3 class="sub-header text-left">社区</h3>
+        <div th:replace="form_small_comm::#th_form_small_comm"></div>
+
+    </div>
+</div><!--row-->
+
+<div class="row placeholders">
+    <div class="col-xs-7 col-sm-7 placeholder">
+        
+        <!--<button class="btn btn-lg btn-primary btn-block" id="btn_add_net_info">确认</button>-->
+    </div>
+</div><!--row-->
+
+    </div><!--content_container-->
+
+<!-- FOOTER -->
+
+<!-- EXTRA_STYLE -->
+</html>

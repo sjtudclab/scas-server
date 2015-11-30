@@ -9,16 +9,11 @@ public class Community {
 
     private String commCodeProvince;
 
-    private String comCodeCity;
+    private String commCodeCity;
 
     private String commCodeDistrict;
 
     private String commCodeCommunity;
-
-    public Community(String commName, String commAddress) {
-        this.commName = commName;
-        this.commAddress = commAddress;
-    }
 
     public Integer getCommId() {
         return commId;
@@ -52,12 +47,12 @@ public class Community {
         this.commCodeProvince = commCodeProvince == null ? null : commCodeProvince.trim();
     }
 
-    public String getComCodeCity() {
-        return comCodeCity;
+    public String getCommCodeCity() {
+        return commCodeCity;
     }
 
-    public void setComCodeCity(String comCodeCity) {
-        this.comCodeCity = comCodeCity == null ? null : comCodeCity.trim();
+    public void setCommCodeCity(String commCodeCity) {
+        this.commCodeCity = commCodeCity == null ? null : commCodeCity.trim();
     }
 
     public String getCommCodeDistrict() {
