@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id="th_head">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script src="resources/js/jquery-2.1.4.min.js"></script>
+    <script src="resources/js/bootstrap-3.3.6.min.js"></script>
+    <link href="resources/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
+    <title>注册</title>
+    <!-- 其他script或style请写在body最后面 -->
+</head>
+<body>
+<!-- CONTENT -->
+<div class="container">
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form id="formSignup" action="" method="post"  enctype="multipart/form-data">
+            <h1>智慧社区应用服务门户</h1>
+            <h3>请注册</h3>
+            <div class="form-group">
+                <label class="sr-only" for="inputUsername">账号</label>
+                <input class="form-control" id="inputUsername" name="username" type="text" placeholder="账号" required="required" autofocus="autofocus"/>
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="inputPassword">密码</label>
+                <input class="form-control" id="inputPassword" name="password" type="password" placeholder="密码" required="required"/>
+            </div>
+            <div class="form-group">
+                    <label class="sr-only" for="inputEmail">邮箱</label>
+                    <input class="form-control" id="inputEmail" name="email" type="email" placeholder="邮箱"/>
+                </div>
+            <!--<div class="form-group">
+                <label class="sr-only" for="selectUserType">类型</label>
+                <select class="form-control" id="selectUserType" name="selectUserType">
+                    <option value="3">Resident</option>
+                    <option value="1">Management</option>
+                    <option value="2">Service</option>
+                    <option value="4">Admin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label><input id="checkAdvancedOptions" type="checkbox" value="show_advanced_options" checked="checked"/> 更多选项</label>
+                </div>
+            </div>
+            <div id="divAdvancedOptions">
+                <div class="form-group">
+                    <label class="sr-only" for="inputName">姓名</label>
+                    <input class="form-control" id="inputName" name="name" type="text" placeholder="姓名"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="inputEmail">邮箱</label>
+                    <input class="form-control" id="inputEmail" name="email" type="email" placeholder="邮箱"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="inputIdentityNum">ID</label>
+                    <input class="form-control" id="inputIdentityNum" name="identity_number" type="text" placeholder="ID"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="inputCardId">卡号</label>
+                    <input class="form-control" id="inputCardId" name="card_number" type="text" placeholder="卡号">
+                </div>
+                <div class="form-group">
+                    <p class="help-block">请上传你的头像</p>
+                    <label class="sr-only" for="inputImageFile">选择头像</label>
+                    <input id="inputImageFile" type="file"  name="upload"/>
+                </div>
+            </div>-->
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+</div> <!-- /container -->
+<script>
+    $(document).ready(function(){
+        $('#checkAdvancedOptions').click(function(){
+            $('#divAdvancedOptions').toggle(1000)
+        })
+        postSignupInfo()
+    })
+    function postSignupInfo(){
+    	$('#formSignup').on('submit', function(event){
+//      alert('hi');
+        var username = $('#inputUsername').val();
+        var password = $('#inputPassword').val();
+        var email = $('#inputEmail').val();
+        $.ajax({
+            type: "POST",
+            url: "/scas-server/signup",
+            data:  JSON.stringify({
+                "adminname":username,
+                "password":password,
+                "email": email
+            }),
+            contentType: "application/json",
+            success: function() {
+                console.log('Redirect to Login');
+                window.location.href="/scas-server/signin";
+            },
+            error: function(error) {
+                console.log('Oops');
+            }
+        });
+        event.preventDefault();
+    })
+    }
+</script>
+</body>
+</html>
