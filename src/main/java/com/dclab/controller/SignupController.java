@@ -2,7 +2,6 @@ package com.dclab.controller;
 
 import com.dclab.common.Result;
 import com.dclab.entity.Admin;
-import com.dclab.entity.User;
 import com.dclab.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

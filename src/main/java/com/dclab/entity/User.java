@@ -20,6 +20,10 @@ public class User {
 	private String note;
 	private String email;
 	private String image;
+
+	public User() {
+	}
+
 	public long getId() {
 		return id;
 	}

@@ -14,7 +14,7 @@
         </commentGenerator>
         <!--数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://202.120.40.111:3306/community_server"
+                        connectionURL="jdbc:mysql://202.120.40.111:3306/MetaManager"
                         userId="root"
                         password="_root">
         </jdbcConnection>
@@ -36,7 +36,7 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等-->
-        <table schema="community_server" tableName="community" domainObjectName="Community"
+        <table schema="MetaManager" tableName="community" domainObjectName="Community"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

@@ -1,7 +1,6 @@
 package com.dclab.service;
 
 import com.dclab.entity.Admin;
-import com.dclab.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**

@@ -2,7 +2,6 @@ package com.dclab.controller;
 
 import com.dclab.common.Result;
 import com.dclab.entity.Admin;
-import com.dclab.entity.User;
 import com.dclab.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,20 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * Created by Huiyi on 2015/3/26.
  */
 @Controller
-@RequestMapping({ "/", "/signin" })
+@RequestMapping({ "/" })
 public class SigninController {
     @Autowired
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String signin(HttpServletRequest request) {
-//        request.getSession().setAttribute("name", "li");
+    public String signin() {
         return "signin";
     }
 

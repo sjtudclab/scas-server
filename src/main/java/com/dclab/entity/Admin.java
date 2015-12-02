@@ -25,6 +25,9 @@ public class Admin {
 
     private String image;
 
+    public Admin() {
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head id="th_head">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script src="resources/js/jquery-2.1.4.min.js" th:src="@{/resources/js/jquery-2.1.4.min.js}"></script>
+    <script src="resources/js/bootstrap-3.3.6.min.js" th:src="@{/resources/js/bootstrap-3.3.6.min.js}"></script>
+    <link href="resources/css/bootstrap-3.3.6.min.css" th:href="@{/resources/css/bootstrap-3.3.6.min.css}" rel="stylesheet"/>
+    <!--<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>-->
+    <!--<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+    <!--<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <!-- TITLE -->
+    <title th:include="this::#th_title">登录</title>
+    <!-- EXTRAHEAD -->
+    <div th:include="this::#th_extrahead"></div>
+</head>
+<!-- BODY**************************************** -->
+<body>
+<!-- NAVIGATION -->
+<!-- CONTENT -->
+<div class="container">
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form id="formSignIn" action="" method="" onsubmit="return saveUserInfo()">
+            <h1>智慧社区应用服务门户</h1>
+            <h3>请登录</h3>
+            <div class="form-group">
+                <label class="sr-only" for="inputUsername">账号</label>
+                <input class="form-control" id="inputUsername" name="username" type="text" placeholder="账号" required="required" autofocus="autofocus"/>
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="inputPassword">密码</label>
+                <input class="form-control" id="inputPassword" name="password" type="password" placeholder="密码" required="required"/>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label><input id="ckRememberMe" type="checkbox" value="remember-me"/> 记住我</label>
+                </div>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" id="btnSignIn" type="submit">登录</button>
+        	<a class="btn btn-lg btn-primary btn-block" href="/signup" th:href="@{/signup}">注册</a>
+        	<a class="btn btn-lg btn-primary btn-block" href="/home" th:href="@{/home}">主页</a>
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+</div> <!-- /container -->
+<!-- FOOTER -->
+<!-- EXTRA_STYLE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script>
+    $(document).ready(function(){
+        if ($.cookie("rememberMe") == "true") {
+            $("#ckRememberMe").attr("checked", true);
+            $("#inputUsername").val($.cookie("username"));
+            $("#inputPassword").val($.cookie("password"));
+        }
+        postSigninInfo()
+    })
+    function saveUserInfo() {
+        if ( $("#ckRememberMe").attr("checked") == "checked") {
+            var username = $("#inputUsername").val();
+            var password = $("#inputPassword").val();
+            $.cookie("rememberMe", "true", { expires: 3 }); // 存储一个带3天期限的 cookie
+            $.cookie("username", username, { expires: 3 });
+            $.cookie("password", password, { expires: 3 });
+        } else {
+            $.cookie("rememberMe", "false", { expires: -1 });   // 删除cookie
+            $.cookie("username", '', { expires: -1 });
+            $.cookie("password", '', { expires: -1 });
+        }
+        return true;
+    }
+    function postSigninInfo(){
+    	$('#formSignIn').on('submit', function(event){
+//	        alert('login now ...');
+	        var username = $('#inputUsername').val()
+	        var password = $('#inputPassword').val()
+	        $.ajax({
+	            type: "POST",
+	            url: "/scas-server/signin",
+	            data:  JSON.stringify({
+	                "adminname":username,
+	                "password":password,
+	            }),
+	            contentType: "application/json",
+	            success: function() {
+	                console.log('Redirect to homepage')
+	                window.location.href="/scas-server/home";
+	            },
+	            error: function(error) {
+	                console.log('Oops')
+	            }
+	        })
+        	event.preventDefault()
+    	})
+    }
+</script>
+</body>
+</html>

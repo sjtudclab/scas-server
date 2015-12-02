@@ -1,7 +1,6 @@
 package com.dclab.service.impl;
 
 import com.dclab.entity.Admin;
-import com.dclab.entity.User;
 import com.dclab.mapper.AdminMapper;
 import com.dclab.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -32,10 +32,9 @@
     <!--  TemplateResolver <- TemplateEngine <- ViewResolver              -->
     <!-- **************************************************************** -->
     <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
-		<property name="prefix" value="/WEB-INF/pages/templates/" />
+		<property name="prefix" value="/scas-server/" />
 		<property name="suffix" value=".html" />
-        <!-- Template cache is true by default. Set to false if you want
-        templates to be automatically updated when modified. -->
+        <!-- Template cache is true by default. Set to false if you want templates to be automatically updated when modified. -->
 		<property name="cacheable" value="false" />
 		<property name="characterEncoding" value="UTF-8" />
 		<property name="templateMode" value="LEGACYHTML5" />
@@ -53,10 +52,7 @@
     <!-- RESOURCE FOLDERS CONFIGURATION -->
     <!-- Dispatcher configuration for serving static resources -->
     <!-- **************************************************************** -->
-    <mvc:resources location="/WEB-INF/pages/" mapping="/scas-server/**" />
-    <mvc:resources location="/WEB-INF/images/" mapping="/scas-server/images/**" />
-    <mvc:resources location="/WEB-INF/css/" mapping="/scas-server/css/**" />
-    <mvc:resources location="/WEB-INF/js/" mapping="/scas-server/js/**" />
+    <mvc:resources location="/scas-server/resources/" mapping="/resources/**" />
 
     <!-- **************************************************************** -->
     <!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->

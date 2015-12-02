@@ -1,5 +1,9 @@
 package com.dclab.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Community {
     private Integer commId;
 
@@ -14,6 +18,8 @@ public class Community {
     private String commCodeDistrict;
 
     private String commCodeCommunity;
+
+    public Community(){}
 
     public Integer getCommId() {
         return commId;
