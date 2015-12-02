@@ -20,11 +20,6 @@ public class SignupController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String signup() {
-        return "signup";
-    }
-
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public String register(@RequestBody Admin admin) {
