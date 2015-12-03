@@ -3,7 +3,6 @@ package com.dclab.mapper;
 import com.dclab.entity.Admin;
 
 public interface AdminMapper {
-    Admin findByAdminName(String adminName);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -16,4 +15,6 @@ public interface AdminMapper {
     int updateByPrimaryKeySelective(Admin record);
 
     int updateByPrimaryKey(Admin record);
+
+    Admin findByAdminName(String adminName);
 }

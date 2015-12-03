@@ -36,7 +36,7 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等-->
-        <table schema="MetaManager" tableName="community" domainObjectName="Community"
+        <table schema="MetaManager" tableName="merchant" domainObjectName="Merchant"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

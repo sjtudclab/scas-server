@@ -30,9 +30,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Admin checkAdmin(Admin admin) {
-		Admin a = adminMapper.findByAdminName(admin.getAdminname());
-		if (a!=null && admin.getPassword().equals(a.getPassword()))
-			return a;
+		Admin realAdmin = adminMapper.findByAdminName(admin.getAdminname());
+		if (realAdmin!=null && admin.getPassword().equals(realAdmin.getPassword()))
+			return realAdmin;
 		return null;
+	}
+
+	@Override
+	public Admin getAdmin(String adminname) {
+		return adminMapper.findByAdminName(adminname);
 	}
 }

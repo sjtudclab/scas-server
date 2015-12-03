@@ -18,4 +18,5 @@ public interface NeighbourhoodMapper {
     int updateByPrimaryKey(Neighbourhood record);
 
     List<Neighbourhood> getNeighbourhoodsByCommId(Integer commId);
+    Neighbourhood getNeighbourhood(String neigName, String neigAddress);
 }

@@ -23,6 +23,11 @@
         WHERE neighbourhood.comm_id = #{commId,jdbcType=INTEGER} AND community.comm_id = neighbourhood.comm_id
     </select>
 
+    <select id="getNeighbourhood" resultMap="BaseResultMap">
+        SELECT * FROM neighbourhood
+        WHERE neig_name = #{0} AND neig_address = #{1}
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from neighbourhood
     where neig_id = #{neigId,jdbcType=INTEGER}

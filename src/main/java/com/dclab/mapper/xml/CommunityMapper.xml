@@ -20,11 +20,17 @@
     from community
     where comm_id = #{commId,jdbcType=INTEGER}
   </select>
+
+  <select id="findCommunityByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * FROM community
+    WHERE comm_name = #{commName}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from community
     where comm_id = #{commId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dclab.entity.Community" >
+  <insert id="insert" keyProperty="commId" parameterType="com.dclab.entity.Community" >
     insert into community (comm_id, comm_name, comm_address, 
       comm_code_province, comm_code_city, comm_code_district, 
       comm_code_community)
@@ -32,7 +38,7 @@
       #{commCodeProvince,jdbcType=VARCHAR}, #{commCodeCity,jdbcType=VARCHAR}, #{commCodeDistrict,jdbcType=VARCHAR}, 
       #{commCodeCommunity,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dclab.entity.Community" >
+  <insert id="insertSelective" keyProperty="commId" parameterType="com.dclab.entity.Community" >
     insert into community
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="commId != null" >

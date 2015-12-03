@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  *@author changyi yuan
  */
 public interface UserService extends UserDetailsService{
-    public int registerAdmin(Admin admin);
-    public Admin checkAdmin(Admin admin);
+    int registerAdmin(Admin admin);
+    Admin checkAdmin(Admin admin);
+    Admin getAdmin(String adminname);
 }
