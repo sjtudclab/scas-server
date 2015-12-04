@@ -6,6 +6,6 @@
     
     <typeAliases>
 
-        <typeAlias alias="User" type="com.dclab.entity.User" />
+        <typeAlias alias="User" type="com.dclab.entity.TheUser" />
     </typeAliases>
 </configuration>  

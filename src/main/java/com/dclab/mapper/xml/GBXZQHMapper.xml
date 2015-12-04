@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dclab.mapper.GBXZQHMapper" >
+  <resultMap id="BaseResultMap" type="com.dclab.entity.GBXZQH" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="county_code" property="countyCode" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="town_code" property="townCode" jdbcType="VARCHAR" />
+    <result column="community" property="community" jdbcType="VARCHAR" />
+    <result column="community_code" property="communityCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, code, province, province_code, city, city_code, county, county_code, town, 
+    town_code, community, community_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from GB_XZQH
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="getGBXZQHs" resultMap="BaseResultMap">
+    SELECT * FROM GB_XZQH
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from GB_XZQH
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dclab.entity.GBXZQH" >
+    insert into GB_XZQH (id, name, code, 
+      province, province_code, city, 
+      city_code, county, county_code, 
+      town, town_code, community, 
+      community_code)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, 
+      #{town,jdbcType=VARCHAR}, #{townCode,jdbcType=VARCHAR}, #{community,jdbcType=VARCHAR}, 
+      #{communityCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dclab.entity.GBXZQH" >
+    insert into GB_XZQH
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="countyCode != null" >
+        county_code,
+      </if>
+      <if test="town != null" >
+        town,
+      </if>
+      <if test="townCode != null" >
+        town_code,
+      </if>
+      <if test="community != null" >
+        community,
+      </if>
+      <if test="communityCode != null" >
+        community_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="townCode != null" >
+        #{townCode,jdbcType=VARCHAR},
+      </if>
+      <if test="community != null" >
+        #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="communityCode != null" >
+        #{communityCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dclab.entity.GBXZQH" >
+    update GB_XZQH
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        county_code = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="townCode != null" >
+        town_code = #{townCode,jdbcType=VARCHAR},
+      </if>
+      <if test="community != null" >
+        community = #{community,jdbcType=VARCHAR},
+      </if>
+      <if test="communityCode != null" >
+        community_code = #{communityCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dclab.entity.GBXZQH" >
+    update GB_XZQH
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      county_code = #{countyCode,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      town_code = #{townCode,jdbcType=VARCHAR},
+      community = #{community,jdbcType=VARCHAR},
+      community_code = #{communityCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

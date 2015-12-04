@@ -1,6 +1,6 @@
 package com.dclab.util;
 
-import com.dclab.entity.User;
+import com.dclab.entity.TheUser;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,15 +9,15 @@ import org.springframework.security.core.userdetails.UserDetails;
  *@author changyi yuan
  */
 public class SecurityContextUtils {
-	public final static User getUser(){
+	public final static TheUser getUser(){
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if(principal instanceof UserDetails)
-			return (User)principal;
+			return (TheUser)principal;
 		return null;
 	}
 	
 	public final static long getUserId(){
-		User user = getUser();
+		TheUser user = getUser();
 		return user.getId();
 	}
 	

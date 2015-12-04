@@ -1,4 +1,4 @@
-package com.dclab.entity;
+package com.dclab.entity.response;
 
 import java.util.List;
 

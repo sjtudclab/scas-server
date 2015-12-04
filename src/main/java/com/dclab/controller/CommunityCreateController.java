@@ -1,15 +1,13 @@
 package com.dclab.controller;
 
 import com.dclab.entity.*;
+import com.dclab.entity.response.ResponseResult;
 import com.dclab.service.CommunityCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by DCLab on 11/27/2015.
