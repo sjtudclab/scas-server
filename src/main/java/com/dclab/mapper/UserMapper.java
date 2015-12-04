@@ -2,6 +2,9 @@ package com.dclab.mapper;
 
 import com.dclab.entity.User;
 
+import java.util.Collection;
+import java.util.List;
+
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
 
@@ -14,4 +17,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    Collection<User> selectByCommunityId(Integer communityId);
 }

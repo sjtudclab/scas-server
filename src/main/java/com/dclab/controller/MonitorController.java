@@ -23,17 +23,8 @@ public class MonitorController {
     @RequestMapping(value = "/mobile/user/monitor", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Collection<MonitorStatus> getMonitorInfo(int communityId) {
-        monitorService.getMonitorInfo(1);
-        Collection<MonitorStatus> result = new ArrayList<MonitorStatus>();
-        MonitorStatus ms= new MonitorStatus(), ms2 = new MonitorStatus();
-        ms.setStatus(true);
-        ms.setUserId("chang yi");
-        ms.setUserName("Yuan");
-        ms2.setStatus(true);
-        ms2.setUserId("123");
-        ms2.setUserName("Yuan chang yi");
-        result.add(ms);
-        result.add(ms2);
-        return result;
+        return monitorService.getMonitorInfo(communityId);
+
+
     }
 }

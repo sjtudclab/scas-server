@@ -29,6 +29,13 @@
   </select>
 
   <!-- 自定义select -->
+  <select id="selectByCommunityId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where comm_id = #{communityId,jdbcType=INTEGER}
+  </select>
+
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
