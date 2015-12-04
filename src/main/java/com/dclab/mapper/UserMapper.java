@@ -18,5 +18,5 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    Collection<User> selectByCommunityId(Integer communityId);
+    List<User> selectByCommunityId(Integer communityId);
 }

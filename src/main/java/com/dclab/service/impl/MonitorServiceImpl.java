@@ -24,12 +24,12 @@ public class MonitorServiceImpl implements MonitorService{
     private UserMapper userMapper;
 
     @Override
-    public Collection<MonitorStatus> getMonitorInfo(int communityId){
+    public List<MonitorStatus> getMonitorInfo(int communityId){
         String configLocation="dubbo-consumer.xml";
         ApplicationContext context = new ClassPathXmlApplicationContext(configLocation);
         service = (OnlineStatusQueryService)context.getBean("onlineStatusService");
-        Collection<User> users = userMapper.selectByCommunityId(communityId);
-        Collection<MonitorStatus> result = new ArrayList<MonitorStatus>();
+        List<User> users = userMapper.selectByCommunityId(communityId);
+        List<MonitorStatus> result = new ArrayList<MonitorStatus>();
         for (User u: users) {
             if (!service.checkOnline(u.getUserId().toString()).equals("[]")) {
                 MonitorStatus ms= new MonitorStatus();
