@@ -31,14 +31,15 @@ public class MonitorServiceImpl implements MonitorService{
         List<User> users = userMapper.selectByCommunityId(communityId);
         List<MonitorStatus> result = new ArrayList<MonitorStatus>();
         for (User u: users) {
+            MonitorStatus ms= new MonitorStatus();
+            ms.setUserId(u.getUserId().toString());
+            ms.setUserName(u.getUsername());
             if (!service.checkOnline(u.getUserId().toString()).equals("[]")) {
-                MonitorStatus ms= new MonitorStatus();
                 ms.setStatus(true);
-                ms.setUserId(u.getUserId().toString());
-                ms.setUserName(u.getUsername());
-                result.add(ms);
-
+            } else {
+                ms.setStatus(false);
             }
+            result.add(ms);
         }
         return result;
     }
