@@ -12,6 +12,10 @@
     <context:annotation-config />
     <mvc:annotation-driven />
 
+    <!--To get the default implementation of SpringSwaggerConfig-->
+    <!--<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />-->
+    <bean class="com.dclab.config.SwaggerConfig" />
+
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 
     <!--InternalResourceViewResolver必须总是赋予最低的优先级（最大的order值），
@@ -53,6 +57,7 @@
     <!-- Dispatcher configuration for serving static resources -->
     <!-- **************************************************************** -->
     <mvc:resources location="/scas-server/resources/" mapping="/resources/**" />
+    <mvc:resources location="/WEB-INF/swaggerui/" mapping="/swagger/**"/>
 
     <!-- **************************************************************** -->
     <!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->

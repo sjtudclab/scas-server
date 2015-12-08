@@ -3,6 +3,8 @@ package com.dclab.controller;
 import com.dclab.entity.*;
 import com.dclab.entity.response.ResponseResult;
 import com.dclab.service.CommunityCreateService;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +15,12 @@ import java.util.ArrayList;
  * Created by DCLab on 11/27/2015.
  */
 @Controller
+@Api(value = "CommunityCreate", description = "社区创建模块", position = 6)
 public class CommunityCreateController {
     @Autowired
     private CommunityCreateService communityCreateService;
 
+    @ApiOperation(value = "community add", notes = "添加社区信息", position = 1)
     @ResponseBody
     @RequestMapping(value = "/community/add", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
     public ResponseResult<Community> addCommunity(@RequestBody Community community) {
