@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id="th_head">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script src="resources/js/jquery-2.1.4.min.js"></script>
+    <script src="resources/js/bootstrap-3.3.6.min.js"></script>
+    <link href="resources/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
+    <title>应用服务配置</title>
+    <link href="resources/css/home.css" rel="stylesheet">
+    <!-- 其他script或style请写在body最后面 -->
+</head>
+<body>
+<!-- NAVIGATION -->
+<nav id="th_navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="./home.html">智慧社区应用服务门户</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li><a href="./home.html" >首页</a></li>
+                <li><a href="#">设置</a></li>
+                <li><a href="#">信息</a></li>
+                <li><a href="#">帮助</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div id="th_content" class="container-fluid">
+    <div class="row">
+        <!--SIDE_BAR-->
+        <div id="th_sidebar" class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header">社区管理</h4></li>
+                <li><a href="./community_info_fillout.html" >社区基本信息<span class="sr-only">(current)</span></a></li>
+                <li><a href="./people_info_fillout.html" >人员基本信息</a></li>
+                <li><a href="./service_info_fillout.html" >应用服务配置</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header">状态监控</h4></li>
+                <li><a href="mobile_user_monitor.html">移动端在线状态</a></li>
+            </ul>
+        </div>
+
+        <!--CONTENT_CONTAINER-->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <!-- BEGIN************************请在此处添加内容************************ -->
+            <h1 class="page-header">应用服务配置</h1>
+
+            <div class="row placeholders">
+                <div class="col-xs-7 col-sm-7 placeholder">
+                    <h3 class="sub-header text-left">社区</h3>
+                    <h4>所属社区：上海 上海市 杨浦区 五角场镇 东方名城居委会</h4>
+                </div>
+            </div><!--row-->
+
+            <div class="row placeholders">
+                <div class="col-xs-7 col-sm-7 placeholder">
+
+                    <form class="form-horizontal" id="th_form_community">
+                        <input hidden id="input_user_netcard_id" name="user_netcard_id" type="text" value="0">
+                        <!--<div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_nickname">名称</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_nickname" type="text" value="东方名城">
+                            </div>
+                        </div>-->
+                        <h3 class="sub-header text-left">必选服务</h3>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_nickname">社交</label>
+                            <div class="checkbox col-sm-9">
+                                <label><input type="checkbox" checked disabled> 聊天</label>
+                                <label><input type="checkbox" checked disabled> 通讯录</label>
+                                <label><input type="checkbox" checked disabled> 邻里</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_nickname">个人信息</label>
+                            <div class="checkbox col-sm-9">
+                                <label><input type="checkbox" checked disabled> 实名信息</label>
+                                <label><input type="checkbox" checked disabled> 居住信息</label>
+                                <label><input type="checkbox" checked disabled> 网络信息</label>
+                                <label><input type="checkbox" checked disabled> 党员信息</label>
+                            </div>
+                        </div>
+
+                        <h3 class="sub-header text-left">可选服务</h3>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_nickname">舆论</label>
+                            <div class="checkbox col-sm-9">
+                                <label><input type="checkbox" checked > 民议广场</label>
+                                <label><input type="checkbox" > 民意投票</label>
+                                <label><input type="checkbox" > 公告管理</label>
+                                <label><input type="checkbox" > 舆情管理</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_nickname">基础数据</label>
+                            <div class="checkbox col-sm-9">
+                                <label><input type="checkbox" > 人口信息</label>
+                                <label><input type="checkbox" > 房屋信息</label>
+                                <label><input type="checkbox" > 周边设施</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_nickname">人事管理</label>
+                            <div class="checkbox col-sm-9">
+                                <label><input type="checkbox" > 人事信息</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_nickname">居委会工作</label>
+                            <div class="checkbox col-sm-9">
+                                <label><input type="checkbox" > 民政工作</label>
+                                <label><input type="checkbox" > 公益服务</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_nickname">居民生活</label>
+                            <div class="checkbox col-sm-9">
+                                <label><input type="checkbox" > 物业报修</label>
+                                <label><input type="checkbox" > 便民服务</label>
+                            </div>
+                        </div>
+                    </form>
+
+                    <button class="btn btn-lg btn-primary btn-block" id="btn_add_net_info">确认</button>
+                </div>
+
+                <!--<div class="col-xs-5 col-xs-offset-1 col-sm-5 col-sm-offset-1 placeholder">
+                    <h3 class="sub-header text-left">Resident Information</h3>
+                    {% include "template/form_resident.html" %}
+                </div>-->
+            </div><!--row-->
+        <!-- END************************请在此处添加内容************************ -->
+        </div><!-- content_container -->
+
+
+    </div><!--row-->
+</div><!-- /.container -->
+
+<!-- FOOTER -->
+<div></div>
+<!-- EXTRA_SCRIPT -->
+<script></script>
+<!-- EXTRA_STYLE -->
+<style>
+    .form-horizontal img{
+        max-height: 64px;max-width: 64px;
+    }
+</style>
+</body>
+</html>

@@ -8,7 +8,7 @@
     <script src="resources/js/jquery-2.1.4.min.js"></script>
     <script src="resources/js/bootstrap-3.3.6.min.js"></script>
     <link href="resources/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
-    <title>人员基本信息</title>
+    <title>居民详细信息</title>
     <link href="resources/css/home.css" rel="stylesheet">
     <!-- 其他script或style请写在body最后面 -->
 </head>
@@ -57,90 +57,70 @@
         <!--CONTENT_CONTAINER-->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <!-- BEGIN************************请在此处添加内容************************ -->
-            <h1 class="page-header">人员基本信息</h1>
+            <h1 class="page-header">居民详细信息</h1>
 
             <div class="row placeholders">
-
                 <div class="col-xs-7 col-sm-7 placeholder">
                     <h3 class="sub-header text-left">社区</h3>
                     <h4>所属社区：上海 上海市 杨浦区 五角场镇 东方名城居委会</h4>
                 </div>
 
-                <div class="col-xs-9 col-sm-9 placeholder">
-                    <h3 class="sub-header text-left">居民
-                        <a class="btn btn-link btn-lg" id="btn_comm_new_row" type="button" th:href="@{/create/small_community(commId=${commId})}">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </a>
-                    </h3>
+                <div class="col-xs-7 col-sm-7 placeholder">
+                    <h3 class="sub-header text-left">小区</h3>
+                    <h4>所属小区：东方名城A小区</h4>
+                </div>
 
+                <div class="col-xs-7 col-sm-7 placeholder">
+                    <h3 class="sub-header text-left">楼栋</h3>
+                    <h4>所属楼栋：东方名城楼A</h4>
+                </div>
+
+                <div class="col-xs-7 col-sm-7 placeholder">
+                    <h3 class="sub-header text-left">户</h3>
+                    <h4>所属户：户01</h4>
+                </div>
+
+            </div><!--row-->
+
+            <div class="row placeholders">
+                <div class="col-xs-7 col-sm-7 placeholder">
+                    <!--Basic Infomation-->
+                    <h3 class="sub-header text-left">居民信息</h3>
                     <form class="form-horizontal" id="th_form_resident">
+                        <input hidden id="input_citizen_id" name="user_citizen_id" type="text" value="0">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="select_gender">所属小区</label>
-                            <div class="col-sm-7">
-                                <select class="form-control" id="select_province" genderVal="1">
-                                    <option value="0">东方名城A小区</option>
+                            <label class="col-sm-3 control-label" for="input_identification_value">姓名</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_identification_value" type="text" value="李明">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="select_gender">性别</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="select_gender" genderVal="1">
+                                    <option value="1">男</option>
+                                    <option value="0">女</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="select_gender">所属楼栋</label>
-                            <div class="col-sm-7">
-                                <select class="form-control" id="select_city" genderVal="1">
-                                    <option value="0">东方名城楼A</option>
-                                </select>
+                            <label class="col-sm-3 control-label" for="input_age">年龄</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_age" type="number" value="25">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" for="select_gender">所属户</label>
-                            <div class="col-sm-7">
-                                <select class="form-control" id="select_county" genderVal="1">
-                                    <option value="0">户01</option>
-                                </select>
+                            <label class="col-sm-3 control-label" for="input_phone">证件号</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_phone" type="text" value="360728199208010000">
                             </div>
                         </div>
+
+                        <!--<button class="btn btn-lg btn-primary btn-block" id="btn_update_resident_info">Update All</button>
+                        <button class="btn btn-lg btn-primary btn-block" id="btn_add_resident_info">Add Info</button>-->
                     </form>
 
-                    <div class="table-responsive" id="th_table_small_comm">
-
-                        <table class="table table-striped table-hover">
-                            <thead>
-                            <tr>
-                                <th>居民编号</th><th>姓名</th><th>性别</th><th>年龄</th><th>证件号</th><th>编辑</th><th>删除</th>
-                            </tr>
-                            </thead>
-                            <tbody id="tbody_apartment_edit">
-                            <tr>
-                                <td class="user_id">1</td>
-                                <td>李明</td>
-                                <td>男</td>
-                                <td>25</td>
-                                <td>360728199901010000</td>
-                                <td>
-                                    <button class="btn btn-link btn-xs btn_edit" type="button">
-                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-link btn-xs btn_remove" type="button">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table><!--table-->
-
-                    </div><!--table-responsice-->
-
-                </div>
-
-                <div class="col-xs-7 col-sm-7 placeholder">
-                    <h3 class="sub-header text-left">管理群众</h3>
-                    <!--TODO-->
-                </div>
-
-                <div class="col-xs-7 col-sm-7 placeholder">
-                    <h3 class="sub-header text-left">服务群众</h3>
-                    <!--TODO-->
+                    <button class="btn btn-lg btn-primary btn-block" id="btn_add_net_info">确认</button>
                 </div>
 
                 <!--<div class="col-xs-5 col-xs-offset-1 col-sm-5 col-sm-offset-1 placeholder">

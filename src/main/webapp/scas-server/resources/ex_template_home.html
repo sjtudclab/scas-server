@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <script src="resources/js/jquery-2.1.4.min.js"></script>
-    <script src="resources/js/bootstrap-3.3.6.min.js"></script>
-    <link href="resources/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
-    <title>主页</title>
-    <link href="resources/css/home.css" rel="stylesheet">
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap-3.3.6.min.js"></script>
+    <link href="css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
+    <title></title>
+    <link href="css/home.css" rel="stylesheet">
     <!-- 其他script或style请写在body最后面 -->
 </head>
 <body>
@@ -24,11 +24,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="./home.html">智慧社区应用服务门户</a>
+            <a class="navbar-brand" href="../home.html">智慧社区应用服务门户</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
-                <li><a href="./home.html" >首页</a></li>
+                <li><a href="../home.html" >首页</a></li>
                 <li><a href="#">设置</a></li>
                 <li><a href="#">信息</a></li>
                 <li><a href="#">帮助</a></li>
@@ -43,25 +43,32 @@
         <!--SIDE_BAR-->
         <div id="th_sidebar" class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><h4 class="sub-header">社区管理</h4></li>
-                <li><a href="./community_info_fillout.html" >社区基本信息<span class="sr-only">(current)</span></a></li>
-                <li><a href="./people_info_fillout.html" >人员基本信息</a></li>
-                <li><a href="./service_info_fillout.html" >应用服务配置</a></li>
+                <li><h4 class="sub-header">创建社区</h4></li>
+                <li><a href="#" >社区基本信息录入<span class="sr-only">(current)</span></a></li>
+                <li><a href="#" >人员基本信息录入</a></li>
+                <li><a href="#" >微服务配置</a></li>
+                <li><a href="#" >数据库生成</a></li>
+                <li><a href="#" >社区预览</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><h4 class="sub-header">状态监控</h4></li>
-                <li><a href="mobile_user_monitor.html">移动端在线状态</a></li>
+                <li><h4 class="sub-header">其他</h4></li>
+                <li><a href="#">其他</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header">其他</h4></li>
+                <li><a href="#">其他</a></li>
             </ul>
         </div>
 
         <!--CONTENT_CONTAINER-->
-        <!-- ************************请在此处添加内容************************ -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <!-- BEGIN************************请在此处添加内容************************ -->
+            <h1 class="page-header">一级模块</h1>
 
-            <h1 class="page-header">杨浦区 五角场镇 东方名城居委会应用服务门户</h1>
-
+            <h2 class="sub-header">二级模块</h2>
+        <!-- END************************请在此处添加内容************************ -->
         </div><!-- content_container -->
-        <!-- ************************请在此处添加内容************************ -->
+
 
     </div><!--row-->
 </div><!-- /.container -->
@@ -69,31 +76,8 @@
 <!-- FOOTER -->
 <div></div>
 <!-- EXTRA_SCRIPT -->
-<script>
-    $(document).ready(function(){
-        $('#btn_add_admin').click(function(){
-            window.location.href = "/create/community"
-        })
-        $('#btn_user_list').click(function(){
-            window.location.href = "/create/people"
-        })
-        $('#btn_apartment_list').click(function(){
-            window.location.href = "/config/service"
-        })
-        $('#btn_personnel_list').click(function(){
-            window.location.href = "#"
-        })
-    })
-</script>
+<script></script>
 <!-- EXTRA_STYLE -->
-<style>
-    .placeholders {
-        margin-bottom: 10px;
-        text-align: center;
-    }
-    .placeholders h4 {
-        margin-bottom: 0;
-    }
-</style>
+<style></style>
 </body>
 </html>

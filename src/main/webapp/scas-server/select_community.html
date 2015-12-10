@@ -13,7 +13,7 @@
     <!--<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
     <!--<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>-->
     <!-- TITLE -->
-    <title th:include="this::#th_title">登录</title>
+    <title th:include="this::#th_title">选择社区居委会</title>
     <!-- EXTRAHEAD -->
     <div th:include="this::#th_extrahead"></div>
 </head>
@@ -27,30 +27,52 @@
     <div class="col-md-4" >
         <div ng-app = "login" ng-controller = "userctrl">
             <h1>智慧社区应用服务门户</h1>
-
-            <h4>已选择社区：</h4>
-            <h4>上海 上海市 杨浦区</h4>
-            <h4>五角场镇 东方名城居委会</h4>
-
-            <h3>请登录</h3>
-            <div class="form-group" >
-                <label class="sr-only" for="inputUsername">账号</label>
-                <input class="form-control" ng-model="inputUsername" name="username" type="text" placeholder="账号" required="required" autofocus="autofocus"/>
-            </div>
-            <div class="form-group">
-                <label class="sr-only" for="inputPassword">密码</label>
-                <input class="form-control" ng-model="inputPassword" name="password" type="password" placeholder="密码" required="required"/>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label><input id="ckRememberMe" type="checkbox" value="remember-me"/> 记住我</label>
+            <h3>请选择社区居委会</h3>
+            <form class="form-horizontal" id="th_form_resident">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="select_gender">省/直辖市</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="select_province" genderVal="1">
+                            <option value="0">上海</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block"  ng-click="login_confirm()">登录</button>
-        	<!--a class="btn btn-lg btn-primary btn-block" href="/signup" th:href="@{/signup}">注册</a-->
-			<a class="btn btn-lg btn-primary btn-block" href="./signup.html">注册</a>
-        	<!--a class="btn btn-lg btn-primary btn-block" href="/home" th:href="@{/home}">主页</a-->
-			<a class="btn btn-lg btn-primary btn-block" href="./home.html">主页</a>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="select_gender">市/地区</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="select_city" genderVal="1">
+                            <option value="0">上海市</option>
+                            <option value="1">上海市县</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="select_gender">县/市辖区</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="select_county" genderVal="1">
+                            <option value="0">杨浦区</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="select_gender">镇/街道</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="select_town" genderVal="1">
+                            <option value="0"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="select_gender">居委会</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="select_community" genderVal="1">
+                            <option value="0"></option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+			<a class="btn btn-lg btn-primary btn-block" href="signin.html">确定</a>
         </div>
     </div>
     <div class="col-md-4"></div>

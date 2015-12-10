@@ -43,20 +43,14 @@
         <!--SIDE_BAR-->
         <div id="th_sidebar" class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><h4 class="sub-header">创建社区</h4></li>
-                <li><a href="#" >社区基本信息录入<span class="sr-only">(current)</span></a></li>
-                <li><a href="#" >人员基本信息录入</a></li>
-                <li><a href="#" >微服务配置</a></li>
-                <li><a href="#" >数据库生成</a></li>
-                <li><a href="#" >社区预览</a></li>
+                <li><h4 class="sub-header">社区管理</h4></li>
+                <li><a href="./community_info_fillout.html" >社区基本信息<span class="sr-only">(current)</span></a></li>
+                <li><a href="./people_info_fillout.html" >人员基本信息</a></li>
+                <li><a href="./service_info_fillout.html" >应用服务配置</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><h4 class="sub-header">其他</h4></li>
-                <li><a href="#">其他</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><h4 class="sub-header">其他</h4></li>
-                <li><a href="#">其他</a></li>
+                <li><h4 class="sub-header">状态监控</h4></li>
+                <li><a href="mobile_user_monitor.html">移动端在线状态</a></li>
             </ul>
         </div>
 
@@ -66,54 +60,61 @@
             <h1 class="page-header">移动端在线状态</h1>
 
             <div class="row placeholders">
+                <div class="col-xs-7 col-sm-7 placeholder">
+                    <h3 class="sub-header text-left">社区</h3>
+                    <h4>所属社区：上海 上海市 杨浦区 五角场镇 东方名城居委会</h4>
+                </div>
+            </div><!--row-->
+
+            <div class="row placeholders">
                 <div class="col-xs-9 col-sm-9 placeholder">
                     <h3 class="sub-header text-left">状态查询</h3>
 
-                    <!--下拉组-->
-                    <form class="form-horizontal" id="th_form_resident">
-                        <input hidden id="input_citizen_id" name="user_citizen_id" type="text" value="0">
-                        <div class="form-group">
-                            <label class="col-sm-5 control-label" for="select_gender">省（自治区、直辖市、特别行政区）</label>
-                            <div class="col-sm-7">
-                                <select class="form-control" id="select_province" genderVal="1">
-                                    <option value="0"></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-5 control-label" for="select_gender">市（地区、自治州、盟）</label>
-                            <div class="col-sm-7">
-                                <select class="form-control" id="select_city" genderVal="1">
-                                    <option value="0"></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-5 control-label" for="select_gender">县（市辖区、县级市、旗）</label>
-                            <div class="col-sm-7">
-                                <select class="form-control" id="select_county" genderVal="1">
-                                    <option value="0"></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-5 control-label" for="select_gender">乡、镇（街道办事处）</label>
-                            <div class="col-sm-7">
-                                <select class="form-control" id="select_town" genderVal="1">
-                                    <option value="0"></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-5 control-label" for="select_gender">居委会、村委会</label>
-                            <div class="col-sm-7">
-                                <select class="form-control" id="select_community" genderVal="1">
-                                    <option value="0"></option>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
-                    <br/>
+                    <!--&lt;!&ndash;下拉组&ndash;&gt;-->
+                    <!--<form class="form-horizontal" id="th_form_resident">-->
+                        <!--<input hidden id="input_citizen_id" name="user_citizen_id" type="text" value="0">-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-5 control-label" for="select_gender">省（自治区、直辖市、特别行政区）</label>-->
+                            <!--<div class="col-sm-7">-->
+                                <!--<select class="form-control" id="select_province" genderVal="1">-->
+                                    <!--<option value="0"></option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-5 control-label" for="select_gender">市（地区、自治州、盟）</label>-->
+                            <!--<div class="col-sm-7">-->
+                                <!--<select class="form-control" id="select_city" genderVal="1">-->
+                                    <!--<option value="0"></option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-5 control-label" for="select_gender">县（市辖区、县级市、旗）</label>-->
+                            <!--<div class="col-sm-7">-->
+                                <!--<select class="form-control" id="select_county" genderVal="1">-->
+                                    <!--<option value="0"></option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-5 control-label" for="select_gender">乡、镇（街道办事处）</label>-->
+                            <!--<div class="col-sm-7">-->
+                                <!--<select class="form-control" id="select_town" genderVal="1">-->
+                                    <!--<option value="0"></option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-5 control-label" for="select_gender">居委会、村委会</label>-->
+                            <!--<div class="col-sm-7">-->
+                                <!--<select class="form-control" id="select_community" genderVal="1">-->
+                                    <!--<option value="0"></option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</form>-->
+                    <!--<br/>-->
                     <!--表单-->
                     <div class="table-responsive" id="th_table_devi">
 
@@ -141,107 +142,107 @@
 <!-- EXTRA_SCRIPT -->
 <script src="resources/js/constant.js"></script>
 <script>
-$(document).ready(function(){
-    var onlineStatusData;
-    //获取在线状态（测试）
-    $.ajax({
-        type: "POST",
-        url: "http://202.120.40.111:8888/scas-server/api/mobile/user/monitor",
-        crossDomain: true,
-        dataType: 'json',
-        data: JSON.stringify({
-            "commId": 1 //TODO
-        }),
-        contentType: "application/json",
-        success: function(data) {
-            if(data.code == 0){
-                onlineStatusData = data['data']
-                $.each(onlineStatusData, function(index, onlineStatusObj){
-                    $("#tbody_online_status").append('<tr><td>' +
-                            '1' + '</td><td>' +
-                            onlineStatusObj['userId'] + '</td><td>' +
-                            onlineStatusObj['userName'] + '</td><td>' +
-                            onlineStatusObj['status'] + '</td></tr>')
-                })
-            }else{
-                alert('/mobile/user/monitor get code!=0, msg:' + data.msg);
-            }
-        },
-        error: function(error) {
-            alert('load /mobile/user/monitor error');
-        }
-    })
-
-    var gbxzqh;
-    //获取行政区划码
-    $.ajax({
-        type: "POST",
-        url: "http://202.120.40.111:8888/scas-server/api/metadata/gbxzqh",
-        crossDomain: true,
-        contentType: "application/json",
-        success: function(data) {
-            if(data.code == 0){
-                gbxzqh = data['data']
-            }else{
-                alert('/metadata/gbxzqh get code!=0, msg:' + data.msg);
-            }
-        },
-        error: function(error) {
-            alert('load /metadata/gbxzqh error');
-        }
-    })
-    //用数据填充省份
-    $.each(provinces, function(index, provinceObj){
-        $("#select_province").append('<option value="' +
-                provinceObj["province_code"] + '">' +
-                provinceObj["province"] + '</option>')
-    })
-    var province_code;
-    //选中省份，填充市
-    $("#select_province").change(function(){
-        province_code = $(this).children("option:selected").val()
-        if(province_code == 31){
-            $('#select_city').append('<option value="01">上海市</option>')
-                    .append('<option value="02">上海市县</option>')
-        }
-    })
-    var city_code;
-    //选中市，填充县
-    $("#select_city").change(function(){
-        city_code = $(this).children("option:selected").val()
-        if(city_code == '01'){
-            $('#select_county').append('<option value="01">杨浦区</option>')
-        }
-    })
-    var county_code;
-    //选中县，填充乡镇
-    $("#select_county").change(function(){
-        county_code = $(this).children("option:selected").val()
-        if(county_code == '01'){
-            //用数据填充乡镇
-            $.each(towns, function(index, townObj){
-                $("#select_town").append('<option value="' +
-                        townObj["town_code"] + '">' +
-                        townObj["town"] + '</option>')
-            })
-        }
-    })
-    var town_code;
-    //选中乡镇，填充居委会、村委会
-    $("#select_town").change(function(){
-        town_code = $(this).children("option:selected").val()
-        //先清空
-        $("#select_community").empty()
-        //用数据填充居委会、村委会
-        $.each(gbxzqh, function(index, xzqhObj){
-            if(xzqhObj['townCode'] == town_code){
-                $("#select_community").append('<option value="' +
-                        xzqhObj["communityCode"] + '">' +
-                        xzqhObj["community"] + '</option>')
-            }
-        })
-    })
-})
+//$(document).ready(function(){
+//    var onlineStatusData;
+//    //获取在线状态（测试）
+//    $.ajax({
+//        type: "POST",
+//        url: "http://202.120.40.111:8888/scas-server/api/mobile/user/monitor",
+//        crossDomain: true,
+//        dataType: 'json',
+//        data: JSON.stringify({
+//            "commId": 1 //TODO
+//        }),
+//        contentType: "application/json",
+//        success: function(data) {
+//            if(data.code == 0){
+//                onlineStatusData = data['data']
+//                $.each(onlineStatusData, function(index, onlineStatusObj){
+//                    $("#tbody_online_status").append('<tr><td>' +
+//                            '1' + '</td><td>' +
+//                            onlineStatusObj['userId'] + '</td><td>' +
+//                            onlineStatusObj['userName'] + '</td><td>' +
+//                            onlineStatusObj['status'] + '</td></tr>')
+//                })
+//            }else{
+//                alert('/mobile/user/monitor get code!=0, msg:' + data.msg);
+//            }
+//        },
+//        error: function(error) {
+//            alert('load /mobile/user/monitor error');
+//        }
+//    })
+//
+//    var gbxzqh;
+//    //获取行政区划码
+//    $.ajax({
+//        type: "POST",
+//        url: "http://202.120.40.111:8888/scas-server/api/metadata/gbxzqh",
+//        crossDomain: true,
+//        contentType: "application/json",
+//        success: function(data) {
+//            if(data.code == 0){
+//                gbxzqh = data['data']
+//            }else{
+//                alert('/metadata/gbxzqh get code!=0, msg:' + data.msg);
+//            }
+//        },
+//        error: function(error) {
+//            alert('load /metadata/gbxzqh error');
+//        }
+//    })
+//    //用数据填充省份
+//    $.each(provinces, function(index, provinceObj){
+//        $("#select_province").append('<option value="' +
+//                provinceObj["province_code"] + '">' +
+//                provinceObj["province"] + '</option>')
+//    })
+//    var province_code;
+//    //选中省份，填充市
+//    $("#select_province").change(function(){
+//        province_code = $(this).children("option:selected").val()
+//        if(province_code == 31){
+//            $('#select_city').append('<option value="01">上海市</option>')
+//                    .append('<option value="02">上海市县</option>')
+//        }
+//    })
+//    var city_code;
+//    //选中市，填充县
+//    $("#select_city").change(function(){
+//        city_code = $(this).children("option:selected").val()
+//        if(city_code == '01'){
+//            $('#select_county').append('<option value="01">杨浦区</option>')
+//        }
+//    })
+//    var county_code;
+//    //选中县，填充乡镇
+//    $("#select_county").change(function(){
+//        county_code = $(this).children("option:selected").val()
+//        if(county_code == '01'){
+//            //用数据填充乡镇
+//            $.each(towns, function(index, townObj){
+//                $("#select_town").append('<option value="' +
+//                        townObj["town_code"] + '">' +
+//                        townObj["town"] + '</option>')
+//            })
+//        }
+//    })
+//    var town_code;
+//    //选中乡镇，填充居委会、村委会
+//    $("#select_town").change(function(){
+//        town_code = $(this).children("option:selected").val()
+//        //先清空
+//        $("#select_community").empty()
+//        //用数据填充居委会、村委会
+//        $.each(gbxzqh, function(index, xzqhObj){
+//            if(xzqhObj['townCode'] == town_code){
+//                $("#select_community").append('<option value="' +
+//                        xzqhObj["communityCode"] + '">' +
+//                        xzqhObj["community"] + '</option>')
+//            }
+//        })
+//    })
+//})
 </script>
 <!-- EXTRA_STYLE -->
 <style></style>

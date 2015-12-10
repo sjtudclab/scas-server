@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id="th_head">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script src="resources/js/jquery-2.1.4.min.js"></script>
+    <script src="resources/js/bootstrap-3.3.6.min.js"></script>
+    <link href="resources/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
+    <title></title>
+    <link href="resources/css/home.css" rel="stylesheet">
+    <!-- 其他script或style请写在body最后面 -->
+</head>
+<body>
+<!-- NAVIGATION -->
+<nav id="th_navigation" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home.html">上交纪委信访处理系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li><a href="home.html" >首页</a></li>
+                <li><a href="#">设置</a></li>
+                <li><a href="#">信息</a></li>
+                <li><a href="#">帮助</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div id="th_content" class="container-fluid">
+    <div class="row">
+        <!--SIDE_BAR-->
+        <div id="th_sidebar" class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">收取举报信</a></h4></li>
+                <!--<li><a href="#" >其他<span class="sr-only">(current)</span></a></li>-->
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">信访登记</a></h4></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">拟办意见</a></h4></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">领导批示</a></h4></li>
+                <li><a href="#">纪委副书记</a></li>
+                <li><a href="#">重要信访件</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">信访函件</a></h4></li>
+                <li><a href="#">信访转办函</a></li>
+                <li><a href="#">信访交办函</a></li>
+                <li><a href="#">交办函调查回复</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">调查取证</a></h4></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">调查谈话</a></h4></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">信访回复</a></h4></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">撰写调查报告</a></h4></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">室主任办结意见</a></h4></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">领导审批意见</a></h4></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header"><a href="#">归档</a></h4></li>
+            </ul>
+        </div>
+
+        <!--CONTENT_CONTAINER-->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <!-- BEGIN************************请在此处添加内容************************ -->
+            <h1 class="page-header">信访登记</h1>
+
+            <div class="row placeholders">
+                <div class="col-xs-12 col-sm-12 placeholder">
+                    <h3 class="sub-header text-left">登记</h3>
+
+                    <form class="form-horizontal" id="th_form_resident">
+                        <input hidden id="input_citizen_id" name="user_citizen_id" type="text" value="0">
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input_nickname">反映人</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_nickname" type="text" placeholder="" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input_nickname">被反映人</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_nickname" type="text" placeholder="" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input_nickname">政治面貌</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_nickname" type="text" placeholder="" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input_nickname">职称</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_nickname" type="text" placeholder="" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input_nickname">职务</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_nickname" type="text" placeholder="" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input_nickname">职级</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_nickname" type="text" placeholder="" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input_nickname">所在单位</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_nickname" type="text" placeholder="" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input_nickname">涉及领域</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_nickname" type="text" placeholder="" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input_nickname">信访类别（一级）</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline"><input type="radio" name="radioOptions" checked > 检举控告类
+                                </label>
+                                <label class="radio-inline"><input type="radio" name="radioOptions" > 申诉</label>
+                                <label class="radio-inline"><input type="radio" name="radioOptions" > 批评与建议</label>
+                                <label class="radio-inline"><input type="radio" name="radioOptions" > 业务范围外</label>
+                                <label class="radio-inline"><input type="radio" name="radioOptions" > 无实质内容的信访举报</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="select_gender">检举控告类（二级）</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="select_gender" genderVal="1">
+                                    <option value="0">违反政治纪律行为</option>
+                                    <option >违反组织人事纪律行为</option>
+                                    <option >违反廉洁自律规定行为</option>
+                                    <option >贪污贿赂行为</option>
+                                    <option >破坏社会主义经济秩序行为</option>
+                                    <option >违反财经纪律行为</option>
+                                    <option >失职渎职行为</option>
+                                    <option >侵犯党员权利公民权利行为</option>
+                                    <option >严重违反社会主义道德行为</option>
+                                    <option >妨害社会管理秩序行为</option>
+                                    <option >其他违纪行为</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="select_gender">违反政治纪律行为（三级）</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="select_gender" genderVal="1">
+                                    <option value="0">发散布有严重政治问题的言论</option>
+                                    <option >不执行党和国家方针政策部署决定</option>
+                                    <option >违反党和国家民族宗教政策</option>
+                                    <option >造谣传播筹划党和国家形象</option>
+                                    <option >其他</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="select_gender">业务范围外（二级）</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="select_gender" genderVal="1">
+                                    <option value="0">涉法涉诉</option>
+                                    <option >征地拆迁</option>
+                                    <option >环境保护</option>
+                                    <option >劳动保障</option>
+                                    <option >其他</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 pull-right">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" for="input_nickname">经办人</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" id="input_nickname" type="text" placeholder="张三"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" for="input_nickname">日期</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" id="input_nickname" type="date" placeholder="张三"
+                                           disabled>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-lg btn-primary btn-block" id="btn_add_resident_info">确认</button>
+                            <p class="control-label" >下一步：拟办意见</p>
+                            <p class="control-label" >负责人：案件室主任</p>
+                        </div>
+                    </form>
+                </div>
+            </div><!--row-->
+
+            <!--<h2 class="sub-header">二级模块</h2>-->
+        <!-- END************************请在此处添加内容************************ -->
+        </div><!-- content_container -->
+
+
+    </div><!--row-->
+</div><!-- /.container -->
+
+<!-- FOOTER -->
+<div></div>
+<!-- EXTRA_SCRIPT -->
+<script></script>
+<!-- EXTRA_STYLE -->
+<style></style>
+</body>
+</html>

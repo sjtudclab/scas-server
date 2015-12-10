@@ -8,7 +8,7 @@
     <script src="resources/js/jquery-2.1.4.min.js"></script>
     <script src="resources/js/bootstrap-3.3.6.min.js"></script>
     <link href="resources/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
-    <title>社区基本信息</title>
+    <title>社区基本信息录入</title>
     <link href="resources/css/home.css" rel="stylesheet">
     <!-- 其他script或style请写在body最后面 -->
 </head>
@@ -41,30 +41,85 @@
 <div id="th_content" class="container-fluid">
     <div class="row">
         <!--SIDE_BAR-->
-		<div id="th_sidebar" class="col-sm-3 col-md-2 sidebar">
-			<ul class="nav nav-sidebar">
-				<li><h4 class="sub-header">社区管理</h4></li>
-				<li><a href="./community_info_fillout.html" >社区基本信息<span class="sr-only">(current)</span></a></li>
-				<li><a href="./people_info_fillout.html" >人员基本信息</a></li>
-				<li><a href="./service_info_fillout.html" >应用服务配置</a></li>
-			</ul>
-			<ul class="nav nav-sidebar">
-				<li><h4 class="sub-header">状态监控</h4></li>
-				<li><a href="mobile_user_monitor.html">移动端在线状态</a></li>
-			</ul>
-		</div>
+        <div id="th_sidebar" class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header">创建社区</h4></li>
+                <li><a href="./community_info_fillout.html" >社区基本信息录入<span class="sr-only">(current)</span></a></li>
+                <li><a href="./people_info_fillout.html" >人员基本信息录入</a></li>
+                <li><a href="./service_info_fillout.html" >微服务配置</a></li>
+                <li><a href="#" >数据库生成</a></li>
+                <li><a href="#" >社区预览</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header">其他</h4></li>
+                <li><a href="#">其他</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><h4 class="sub-header">其他</h4></li>
+                <li><a href="#">其他</a></li>
+            </ul>
+        </div>
 
         <!--CONTENT_CONTAINER-->
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <!-- BEGIN************************请在此处添加内容************************ -->
-            <h1 class="page-header">社区基本信息</h1>
+            <h1 class="page-header">社区基本信息录入</h1>
 
             <div class="row placeholders">
                 <div class="col-xs-7 col-sm-7 placeholder">
                     <h3 class="sub-header text-left">社区</h3>
 
-					<h4>所属社区：上海 上海市 杨浦区 五角场镇 东方名城居委会</h4>
+                    <form class="form-horizontal" id="th_form_community" action="#" th:action="@{/create/community}"
+                          th:object="${community}" method="post">
+                        <input hidden id="input_user_netcard_id" name="user_netcard_id" type="text" value="0">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_nickname">名称</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_nickname" type="text" placeholder=""
+                                       th:field="*{commName}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_community_id">地址</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_community_id" type="text" placeholder=""
+                                       th:field="*{commAddress}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_community_id">省(国标码)</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_community_id" type="text" placeholder=""
+                                       th:field="*{commCodeProvince}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_community_id">区县市(国标码)</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_community_id" type="text" placeholder=""
+                                       th:field="*{commCodeCity}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_community_id">乡镇(国标码)</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_community_id" type="text" placeholder=""
+                                       th:field="*{commCodeDistrict}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="input_community_id">社区村(国标码)</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="input_community_id" type="text" placeholder=""
+                                       th:field="*{commCodeCommunity}">
+                            </div>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" id="btn_add_net_info" type="submit">确认</button>
+                        <!--<button class="btn btn-lg btn-primary btn-block" id="btn_update_net_info">Update All</button>-->
+
+                    </form>
+
                 </div>
 
                 <!--<div class="col-xs-5 col-xs-offset-1 col-sm-5 col-sm-offset-1 placeholder">
