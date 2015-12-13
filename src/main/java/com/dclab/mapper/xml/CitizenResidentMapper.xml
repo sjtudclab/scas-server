@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dclab.mapper.CitizenResidentMapper" >
+  <resultMap id="BaseResultMap" type="com.dclab.entity.CitizenResident" >
+    <id column="citizen_id" property="citizenId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="identification_type" property="identificationType" jdbcType="VARCHAR" />
+    <result column="identification_value" property="identificationValue" jdbcType="VARCHAR" />
+    <result column="marriage_status" property="marriageStatus" jdbcType="VARCHAR" />
+    <result column="employment_status" property="employmentStatus" jdbcType="VARCHAR" />
+    <result column="residence_category" property="residenceCategory" jdbcType="VARCHAR" />
+    <result column="resident_status" property="residentStatus" jdbcType="VARCHAR" />
+    <result column="education_status" property="educationStatus" jdbcType="VARCHAR" />
+    <result column="politics_status" property="politicsStatus" jdbcType="VARCHAR" />
+    <result column="migration_status" property="migrationStatus" jdbcType="VARCHAR" />
+    <result column="income_status" property="incomeStatus" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="relationship" property="relationship" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="neighbour_id" property="neighbourId" jdbcType="INTEGER" />
+    <result column="building_id" property="buildingId" jdbcType="INTEGER" />
+    <result column="apartment_id" property="apartmentId" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="comm_id" property="commId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    citizen_id, name, identification_type, identification_value, marriage_status, employment_status, 
+    residence_category, resident_status, education_status, politics_status, migration_status, 
+    income_status, nation, gender, relationship, user_id, neighbour_id, building_id, 
+    apartment_id, age, status, phone, comm_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from citizen_resident
+    where citizen_id = #{citizenId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getCitizenResident" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * FROM citizen_resident
+    WHERE identification_value = #{identificationValue}
+  </select>
+
+  <select id="getCitizenResidentsInCommunity" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT * FROM citizen_resident
+    WHERE comm_id = #{commId}
+  </select>
+
+  <select id="getCitizenResidentsInNeighbour" resultMap="BaseResultMap">
+    SELECT * FROM citizen_resident
+    WHERE comm_id = #{0} AND neighbour_id = #{1}
+  </select>
+
+  <select id="getCitizenResidentsInBuilding" resultMap="BaseResultMap">
+    SELECT * FROM citizen_resident
+    WHERE comm_id = #{0} AND neighbour_id = #{1} AND building_id = #{2}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from citizen_resident
+    where citizen_id = #{citizenId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dclab.entity.CitizenResident" >
+    insert into citizen_resident (citizen_id, name, identification_type, 
+      identification_value, marriage_status, employment_status, 
+      residence_category, resident_status, education_status, 
+      politics_status, migration_status, income_status, 
+      nation, gender, relationship, 
+      user_id, neighbour_id, building_id, 
+      apartment_id, age, status, 
+      phone, comm_id)
+    values (#{citizenId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{identificationType,jdbcType=VARCHAR}, 
+      #{identificationValue,jdbcType=VARCHAR}, #{marriageStatus,jdbcType=VARCHAR}, #{employmentStatus,jdbcType=VARCHAR}, 
+      #{residenceCategory,jdbcType=VARCHAR}, #{residentStatus,jdbcType=VARCHAR}, #{educationStatus,jdbcType=VARCHAR}, 
+      #{politicsStatus,jdbcType=VARCHAR}, #{migrationStatus,jdbcType=VARCHAR}, #{incomeStatus,jdbcType=VARCHAR}, 
+      #{nation,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{relationship,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{neighbourId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, 
+      #{apartmentId,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{commId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dclab.entity.CitizenResident" >
+    insert into citizen_resident
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="citizenId != null" >
+        citizen_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="identificationType != null" >
+        identification_type,
+      </if>
+      <if test="identificationValue != null" >
+        identification_value,
+      </if>
+      <if test="marriageStatus != null" >
+        marriage_status,
+      </if>
+      <if test="employmentStatus != null" >
+        employment_status,
+      </if>
+      <if test="residenceCategory != null" >
+        residence_category,
+      </if>
+      <if test="residentStatus != null" >
+        resident_status,
+      </if>
+      <if test="educationStatus != null" >
+        education_status,
+      </if>
+      <if test="politicsStatus != null" >
+        politics_status,
+      </if>
+      <if test="migrationStatus != null" >
+        migration_status,
+      </if>
+      <if test="incomeStatus != null" >
+        income_status,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="relationship != null" >
+        relationship,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="neighbourId != null" >
+        neighbour_id,
+      </if>
+      <if test="buildingId != null" >
+        building_id,
+      </if>
+      <if test="apartmentId != null" >
+        apartment_id,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="commId != null" >
+        comm_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="citizenId != null" >
+        #{citizenId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationType != null" >
+        #{identificationType,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationValue != null" >
+        #{identificationValue,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatus != null" >
+        #{marriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="employmentStatus != null" >
+        #{employmentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="residenceCategory != null" >
+        #{residenceCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="residentStatus != null" >
+        #{residentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="educationStatus != null" >
+        #{educationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="politicsStatus != null" >
+        #{politicsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="migrationStatus != null" >
+        #{migrationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeStatus != null" >
+        #{incomeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="relationship != null" >
+        #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="neighbourId != null" >
+        #{neighbourId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null" >
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="apartmentId != null" >
+        #{apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="commId != null" >
+        #{commId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dclab.entity.CitizenResident" >
+    update citizen_resident
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationType != null" >
+        identification_type = #{identificationType,jdbcType=VARCHAR},
+      </if>
+      <if test="identificationValue != null" >
+        identification_value = #{identificationValue,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatus != null" >
+        marriage_status = #{marriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="employmentStatus != null" >
+        employment_status = #{employmentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="residenceCategory != null" >
+        residence_category = #{residenceCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="residentStatus != null" >
+        resident_status = #{residentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="educationStatus != null" >
+        education_status = #{educationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="politicsStatus != null" >
+        politics_status = #{politicsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="migrationStatus != null" >
+        migration_status = #{migrationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeStatus != null" >
+        income_status = #{incomeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="relationship != null" >
+        relationship = #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="neighbourId != null" >
+        neighbour_id = #{neighbourId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null" >
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="apartmentId != null" >
+        apartment_id = #{apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="commId != null" >
+        comm_id = #{commId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where citizen_id = #{citizenId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dclab.entity.CitizenResident" >
+    update citizen_resident
+    set name = #{name,jdbcType=VARCHAR},
+      identification_type = #{identificationType,jdbcType=VARCHAR},
+      identification_value = #{identificationValue,jdbcType=VARCHAR},
+      marriage_status = #{marriageStatus,jdbcType=VARCHAR},
+      employment_status = #{employmentStatus,jdbcType=VARCHAR},
+      residence_category = #{residenceCategory,jdbcType=VARCHAR},
+      resident_status = #{residentStatus,jdbcType=VARCHAR},
+      education_status = #{educationStatus,jdbcType=VARCHAR},
+      politics_status = #{politicsStatus,jdbcType=VARCHAR},
+      migration_status = #{migrationStatus,jdbcType=VARCHAR},
+      income_status = #{incomeStatus,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      relationship = #{relationship,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      neighbour_id = #{neighbourId,jdbcType=INTEGER},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      apartment_id = #{apartmentId,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      comm_id = #{commId,jdbcType=INTEGER}
+    where citizen_id = #{citizenId,jdbcType=INTEGER}
+  </update>
+</mapper>

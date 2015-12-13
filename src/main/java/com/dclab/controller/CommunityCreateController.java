@@ -1,6 +1,9 @@
 package com.dclab.controller;
 
 import com.dclab.entity.*;
+import com.dclab.entity.request.BuildingIdBody;
+import com.dclab.entity.request.CommIdBody;
+import com.dclab.entity.request.NeigIdBody;
 import com.dclab.entity.response.ResponseResult;
 import com.dclab.service.CommunityCreateService;
 import com.wordnik.swagger.annotations.Api;
@@ -10,33 +13,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by DCLab on 11/27/2015.
  */
 @Controller
-@Api(value = "CommunityCreate", description = "社区创建模块", position = 6)
+@Api(value = "社区创建模块", description = "社区创建模块")
+@RequestMapping(value = "/community")
 public class CommunityCreateController {
     @Autowired
     private CommunityCreateService communityCreateService;
 
-    @ApiOperation(value = "community add", notes = "添加社区信息", position = 1)
-    @ResponseBody
-    @RequestMapping(value = "/community/add", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
-    public ResponseResult<Community> addCommunity(@RequestBody Community community) {
-        communityCreateService.saveNewCommunity(community);
-        Community foundCommunity = communityCreateService.getCommunity(community.getCommName());
-        if (foundCommunity != null){
-            ArrayList<Community> data = new ArrayList<Community>();
-            data.add(foundCommunity);
-            return new ResponseResult<Community>(data);
-        } else {
-            return new ResponseResult<Community>(1, "添加社区失败");
-        }
-    }
+//    @ApiOperation(value = "添加社区信息", notes = "添加社区信息")
+//    @ResponseBody
+//    @RequestMapping(value = "/community/add", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+//    public ResponseResult<Community> addCommunity(@RequestBody Community community) {
+//        communityCreateService.saveNewCommunity(community);
+//        Community foundCommunity = communityCreateService.getCommunity(community.getCommName());
+//        if (foundCommunity != null){
+//            ArrayList<Community> data = new ArrayList<Community>();
+//            data.add(foundCommunity);
+//            return new ResponseResult<Community>(data);
+//        } else {
+//            return new ResponseResult<Community>(1, "添加社区失败");
+//        }
+//    }
 
+    @ApiOperation(value = "添加小区信息", notes = "添加小区信息")
     @ResponseBody
-    @RequestMapping(value = "/neghbourhood/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/neighbourhood/add", method = RequestMethod.POST)
     public ResponseResult<Neighbourhood> addNeighbourhood(@RequestBody Neighbourhood neighbourhood) {
         communityCreateService.saveNewNeighbourhood(neighbourhood);
         Neighbourhood foundNeighbourhood = communityCreateService.
@@ -50,6 +56,7 @@ public class CommunityCreateController {
         }
     }
 
+    @ApiOperation(value = "添加楼栋信息", notes = "添加楼栋信息")
     @ResponseBody
     @RequestMapping(value = "/building/add", method = RequestMethod.POST)
     public ResponseResult<Building> addBuilding(@RequestBody Building building) {
@@ -65,6 +72,7 @@ public class CommunityCreateController {
         }
     }
 
+    @ApiOperation(value = "添加户信息", notes = "添加户信息")
     @ResponseBody
     @RequestMapping(value = "/apartment/add", method = RequestMethod.POST)
     public ResponseResult<Apartment> addApartment(@RequestBody Apartment apartment) {
@@ -80,6 +88,7 @@ public class CommunityCreateController {
         }
     }
 
+    @ApiOperation(value = "添加周边设施信息", notes = "添加周边设施信息")
     @ResponseBody
     @RequestMapping(value = "/device/add", method = RequestMethod.POST)
     public ResponseResult<Device> addDevice(@RequestBody Device device) {
@@ -95,6 +104,7 @@ public class CommunityCreateController {
         }
     }
 
+    @ApiOperation(value = "添加周边商户信息", notes = "添加周边商户信息")
     @ResponseBody
     @RequestMapping(value = "/merchant/add", method = RequestMethod.POST)
     public ResponseResult<Merchant> addDevice(@RequestBody Merchant merchant) {
@@ -108,6 +118,46 @@ public class CommunityCreateController {
         } else {
             return new ResponseResult<Merchant>(1, "添加周边商户失败");
         }
+    }
+
+    @ApiOperation(value = "获取指定社区的小区列表", notes = "获取指定社区的小区列表")
+    @ResponseBody
+    @RequestMapping(value = "/neighbourhoods", method = RequestMethod.POST)
+    public ResponseResult<Neighbourhood> getNeighbourhoodsByCommId(@RequestBody CommIdBody body){
+        List<Neighbourhood> data = communityCreateService.getNeighbourhoodsByCommId(body.getCommId());
+        return new ResponseResult<Neighbourhood>(data);
+    }
+
+    @ApiOperation(value = "获取指定小区的楼栋列表", notes = "获取指定小区的楼栋列表")
+    @ResponseBody
+    @RequestMapping(value = "/buildings", method = RequestMethod.POST)
+    public ResponseResult<Building> getBuildingsByNeigId(@RequestBody NeigIdBody body){
+        List<Building> data = communityCreateService.getBuildingsByNeigId(body.getNeigId());
+        return new ResponseResult<Building>(data);
+    }
+
+    @ApiOperation(value = "获取指定楼栋的户列表", notes = "获取指定楼栋的户列表")
+    @ResponseBody
+    @RequestMapping(value = "/apartments", method = RequestMethod.POST)
+    public ResponseResult<Apartment> getApartmentsByBuildingId(@RequestBody BuildingIdBody body){
+        List<Apartment> data = communityCreateService.getApartmentsByBuildingId(body.getBuildingId());
+        return new ResponseResult<Apartment>(data);
+    }
+
+    @ApiOperation(value = "获取周边商户列表", notes = "获取周边商户列表")
+    @ResponseBody
+    @RequestMapping(value = "/merchants", method = RequestMethod.POST)
+    public ResponseResult<Merchant> getMerchants(){
+        List<Merchant> data = communityCreateService.getMerchants();
+        return new ResponseResult<Merchant>(data);
+    }
+
+    @ApiOperation(value = "获取周边设施列表", notes = "获取周边设施列表")
+    @ResponseBody
+    @RequestMapping(value = "/devices", method = RequestMethod.POST)
+    public ResponseResult<Device> getDevices(){
+        List<Device> data = communityCreateService.getDevices();
+        return new ResponseResult<Device>(data);
     }
 
 }

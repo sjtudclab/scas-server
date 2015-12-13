@@ -2,6 +2,8 @@ package com.dclab.mapper;
 
 import com.dclab.entity.Merchant;
 
+import java.util.List;
+
 public interface MerchantMapper {
     int deleteByPrimaryKey(Integer merchantId);
 
@@ -16,4 +18,6 @@ public interface MerchantMapper {
     int updateByPrimaryKey(Merchant record);
 
     Merchant findMerchant(String merchantName, String address);
+
+    List<Merchant> getMerchants();
 }

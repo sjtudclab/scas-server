@@ -18,14 +18,21 @@ public interface CommunityCreateService {
 
     int saveNewBuilding(Building building);
     Building getBuilding(String name, Integer neigId);
+    List<Building> getBuildingsByNeigId(Integer neigId);
 
     int saveNewApartment(Apartment apartment);
     Apartment getApartment(Integer ownerId, Integer buildingId);
+    List<Apartment> getApartmentsByBuildingId(Integer buildingId);
 
     int saveNewDevice(Device device);
     Device getDevice(String macAddress);
     Device getDevice(String deviceId, Integer merchantId, String macAddress);
+    List<Device> getDevices();
 
     int saveNewMerchant(Merchant merchant);
     Merchant getMerchant(String merchantName, String address);
+    List<Merchant> getMerchants();
+
+
+
 }

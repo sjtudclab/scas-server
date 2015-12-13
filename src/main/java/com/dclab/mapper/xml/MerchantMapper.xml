@@ -22,6 +22,10 @@
     WHERE merchant_name = #{0} AND address = #{1}
   </select>
 
+  <select id="getMerchants" resultMap="BaseResultMap">
+    SELECT * FROM merchant
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from merchant
     where merchant_id = #{merchantId,jdbcType=INTEGER}

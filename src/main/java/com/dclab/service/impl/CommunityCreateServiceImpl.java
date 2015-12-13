@@ -69,6 +69,11 @@ public class CommunityCreateServiceImpl implements CommunityCreateService {
     }
 
     @Override
+    public List<Building> getBuildingsByNeigId(Integer neigId) {
+        return buildingMapper.getBuildingsByNeigId(neigId);
+    }
+
+    @Override
     public int saveNewApartment(Apartment apartment) {
         return apartmentMapper.insertSelective(apartment);
     }
@@ -76,6 +81,11 @@ public class CommunityCreateServiceImpl implements CommunityCreateService {
     @Override
     public Apartment getApartment(Integer ownerId, Integer buildingId) {
         return apartmentMapper.findApartment(ownerId, buildingId);
+    }
+
+    @Override
+    public List<Apartment> getApartmentsByBuildingId(Integer buildingId) {
+        return apartmentMapper.getApartmentsByBuildingId(buildingId);
     }
 
     @Override
@@ -94,6 +104,11 @@ public class CommunityCreateServiceImpl implements CommunityCreateService {
     }
 
     @Override
+    public List<Device> getDevices() {
+        return deviceMapper.getDevices();
+    }
+
+    @Override
     public int saveNewMerchant(Merchant merchant) {
         return merchantMapper.insertSelective(merchant);
     }
@@ -101,5 +116,10 @@ public class CommunityCreateServiceImpl implements CommunityCreateService {
     @Override
     public Merchant getMerchant(String merchantName, String address) {
         return merchantMapper.findMerchant(merchantName, address);
+    }
+
+    @Override
+    public List<Merchant> getMerchants() {
+        return merchantMapper.getMerchants();
     }
 }

@@ -24,6 +24,11 @@
     WHERE owner_id = #{0} AND building_id = #{1}
   </select>
 
+  <select id="getApartmentsByBuildingId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT * FROM apartment
+    WHERE building_id = #{buildingId}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from apartment
     where apartment_id = #{apartmentId,jdbcType=INTEGER}

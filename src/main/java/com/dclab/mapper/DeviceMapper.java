@@ -2,6 +2,8 @@ package com.dclab.mapper;
 
 import com.dclab.entity.Device;
 
+import java.util.List;
+
 public interface DeviceMapper {
     int deleteByPrimaryKey(String deviceId);
 
@@ -17,4 +19,6 @@ public interface DeviceMapper {
 
     Device findDevice(String macAddress);
     Device findDeviceExact(String deviceId, Integer merchantId, String macAddress);
+
+    List<Device> getDevices();
 }

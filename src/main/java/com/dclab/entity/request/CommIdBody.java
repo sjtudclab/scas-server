@@ -3,14 +3,14 @@ package com.dclab.entity.request;
 /**
  * Created by DCLab on 12/4/2015.
  */
-public class RequestMobileStatBody {
+public class CommIdBody {
 
     private int commId;
 
-    public RequestMobileStatBody() {
+    public CommIdBody() {
     }
 
-    public RequestMobileStatBody(int commId) {
+    public CommIdBody(int commId) {
         this.commId = commId;
     }
 

@@ -2,6 +2,8 @@ package com.dclab.mapper;
 
 import com.dclab.entity.Apartment;
 
+import java.util.List;
+
 public interface ApartmentMapper {
     int deleteByPrimaryKey(Integer apartmentId);
 
@@ -16,4 +18,6 @@ public interface ApartmentMapper {
     int updateByPrimaryKey(Apartment record);
 
     Apartment findApartment(Integer ownerId, Integer buildingId);
+
+    List<Apartment> getApartmentsByBuildingId(Integer buildingId);
 }
