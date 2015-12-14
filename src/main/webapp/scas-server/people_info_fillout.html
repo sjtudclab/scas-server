@@ -8,50 +8,24 @@
     <script src="resources/js/jquery-2.1.4.min.js"></script>
     <script src="resources/js/bootstrap-3.3.6.min.js"></script>
     <link href="resources/css/bootstrap-3.3.6.min.css" rel="stylesheet"/>
+    <script src= "http://apps.bdimg.com/libs/angular.js/1.3.9/angular.min.js"></script>
+    <script src="resources/js/template.js"></script>
     <title>人员基本信息</title>
     <link href="resources/css/home.css" rel="stylesheet">
     <!-- 其他script或style请写在body最后面 -->
 </head>
-<body>
+<body ng-app = "myApp" ng-controller = "myCtrl">
 <!-- NAVIGATION -->
-<nav id="th_navigation" class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="./home.html">智慧社区应用服务门户</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse navbar-right">
-            <ul class="nav navbar-nav">
-                <li><a href="./home.html" >首页</a></li>
-                <li><a href="#">设置</a></li>
-                <li><a href="#">信息</a></li>
-                <li><a href="#">帮助</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
+<div ng-include="'topmenu.html'">
+</div>
+
 
 <!-- CONTENT -->
 <div id="th_content" class="container-fluid">
     <div class="row">
         <!--SIDE_BAR-->
-        <div id="th_sidebar" class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li><h4 class="sub-header">社区管理</h4></li>
-                <li><a href="./community_info_fillout.html" >社区基本信息<span class="sr-only">(current)</span></a></li>
-                <li><a href="./people_info_fillout.html" >人员基本信息</a></li>
-                <li><a href="./service_info_fillout.html" >应用服务配置</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><h4 class="sub-header">状态监控</h4></li>
-                <li><a href="mobile_user_monitor.html">移动端在线状态</a></li>
-            </ul>
+        <div id="th_sidebar" class="col-sm-3 col-md-2 sidebar" ng-include="'sidemenu.html'">
+            
         </div>
 
         <!--CONTENT_CONTAINER-->
@@ -66,7 +40,7 @@
                     <h4>所属社区：上海 上海市 杨浦区 五角场镇 东方名城居委会</h4>
                 </div>
 
-                <div class="col-xs-9 col-sm-9 placeholder">
+                <div class="col-xs-12 col-sm-12 placeholder">
                     <h3 class="sub-header text-left">居民
                         <a class="btn btn-link btn-lg" id="btn_comm_new_row" type="button" th:href="@{/create/small_community(commId=${commId})}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -77,16 +51,16 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="select_gender">所属小区</label>
                             <div class="col-sm-7">
-                                <select class="form-control" id="select_province" genderVal="1">
-                                    <option value="0">东方名城A小区</option>
+                                <select class="form-control" id="select_province" genderVal="1" onchange="checkBuilding(this,1)">
+                                    <!--option value="0">东方名城A小区</option-->
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="select_gender">所属楼栋</label>
                             <div class="col-sm-7">
-                                <select class="form-control" id="select_city" genderVal="1">
-                                    <option value="0">东方名城楼A</option>
+                                <select class="form-control" id="select_city" genderVal="1" onchange="checkPeople()">
+                                    <!--option value="0">东方名城楼A</option-->
                                 </select>
                             </div>
                         </div>
@@ -102,14 +76,14 @@
 
                     <div class="table-responsive" id="th_table_small_comm">
 
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" id="people_table">
                             <thead>
                             <tr>
                                 <th>居民编号</th><th>姓名</th><th>性别</th><th>年龄</th><th>证件号</th><th>编辑</th><th>删除</th>
                             </tr>
                             </thead>
                             <tbody id="tbody_apartment_edit">
-                            <tr>
+                            <!--tr>
                                 <td class="user_id">1</td>
                                 <td>李明</td>
                                 <td>男</td>
@@ -125,7 +99,7 @@
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </button>
                                 </td>
-                            </tr>
+                            </tr-->
                             </tbody>
                         </table><!--table-->
 
@@ -158,7 +132,199 @@
 <!-- FOOTER -->
 <div></div>
 <!-- EXTRA_SCRIPT -->
-<script></script>
+<script>
+	var localID = 0;
+
+	function GetQueryString(name){
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if(r!=null)return  unescape(r[2]); return null;
+	}
+	
+	$(document).ready(function(){
+		var commid = 1;//GetQueryString("commid");
+		var neigId;
+				
+		$.ajax({
+	        type: "POST",
+			url: "http://202.120.40.111:8888/scas-server/api/community/neighbourhoods",
+			dataType: 'json',
+			crossDomain: true,
+	        data:  JSON.stringify({
+				"commId"	:	commid,
+	        }),
+	        contentType: "application/json",
+	        success: function(d) {
+				//alert('success');
+				if(d.code == 0){
+					neigId = d.data[0].neigId;
+					checkBuilding(neigId, 0);
+					for(var i = 0;i < d.data.length;i++){
+						$('#select_province').append('<option value="' + d.data[i].neigId +'">'+ d.data[i].neigName +'</option>');
+					}
+				}else{
+					alert(d.msg);
+				}
+	        },
+			
+	        error: function(error) {
+				alert('error');
+	            console.log('Oops')
+	        }
+	    });
+
+	})
+	
+	function checkBuilding(i, bool){
+		$("#select_city").empty();
+		
+		var t;
+		if(bool == 0){
+			t = i;
+		}else{
+			t = i.value;
+		}
+		
+		$.ajax({
+	        type: "POST",
+			url: "http://202.120.40.111:8888/scas-server/api/community/buildings",
+			dataType: 'json',
+			crossDomain: true,
+	        data:  JSON.stringify({
+				"neigId"	:	t,
+	        }),
+	        contentType: "application/json",
+	        success: function(d) {
+				//alert('success');
+				if(d.code == 0){
+					for(var i = 0;i < d.data.length;i++){
+						$('#select_city').append('<option value="' + d.data[i].buildingId +'">'+ d.data[i].name +'</option>');
+					}
+					checkPeople();
+				}else{
+					alert(d.msg);
+				}
+	        },
+			
+	        error: function(error) {
+				alert('error');
+	            console.log('Oops: by comm')
+	        }
+	    })
+	}
+	
+	function checkPeople(){
+		var neigId = $('#select_province').val();
+		var buildingId = $('#select_city').val();
+	
+		var tb_apart = $('#tbody_apartment_edit');
+		tb_apart.empty();
+		$.ajax({
+	        type: "POST",
+			url: "http://202.120.40.111:8888/scas-server/api/people/residents/building",
+			dataType: 'json',
+			crossDomain: true,
+	        data:  JSON.stringify({
+				"commId"	:	1,
+				"neighbourId"	:	neigId,
+				"buildingId"	:	buildingId,
+	        }),
+	        contentType: "application/json",
+	        success: function(d) {
+				//alert('success');
+				if(d.code == 0){
+					for(var i = 0;i < d.data.length;i++){
+						var s;
+						if(d.data[i].gender == 0){
+							s = '男';
+						}else{
+							s = '女';
+						}
+					
+						tb_apart.append('<tr><td>'+ d.data[i].citizenId +'</td><td>'+ d.data[i].name +'</td><td>'+ s +'</td><td>' + d.data[i].age +'</td><td>'+ d.data[i].identificationValue +'</td><td>' +'</td><td>' +'</td></tr>');
+					}
+				}else{
+					alert(d.msg);
+				}
+	        },
+			
+	        error: function(error) {
+				alert('error');
+	            console.log('Oops: by building')
+	        }
+	    })
+	}
+
+	$('#btn_comm_new_row').click(function(){
+		var tr = $('<tr></tr>');
+		var input1 = $('<td><input id="apartmentId' + localID + '" type="text" required="required" autofocus="autofocus"/></td>');
+		var input2 = $('<td><input id="name' + localID + '" type="text" required="required" autofocus="autofocus"/></td>');
+		var input3 = $('<td><select id="gender' + localID + '"><option value="1">男</option><option value="0">女</option></select></td>');
+		var input4 = $('<td><input id="age' + localID + '" type="text" required="required"/></td>');
+		var input5 = $('<td><input id="identificationValue' + localID + '" type="text" required="required"/></td>');
+		var btn1 = $('<td><button id="btn_people' + localID + '" type="submit" onclick="peopleSub(' + localID +');">确认</button></td>');
+		var btn2 = $('<td></td>');
+		tr.append(input1);
+		tr.append(input2);
+		tr.append(input3);
+		tr.append(input4);
+		tr.append(input5);
+		tr.append(btn1);
+		tr.append(btn2);
+		$('#tbody_apartment_edit').append(tr);
+			
+		localID++;
+		console.log("localID:" + localID);
+	})
+	
+	function peopleSub(i){
+		alert("submit now ...");
+		var commid = GetQueryString("commid");
+		var neigId = $('#select_province').val();
+		var buildingId = $('#select_city').val();
+		var apartmentId = $('#apartmentId' + i).val()
+		var name = $('#name' + i).val()
+		var gender = $('#gender' + i).val()
+		var age = $('#age' + i).val()
+		var identificationValue = $('#identificationValue' + i).val()
+		
+		alert(name + ' ' + gender + ' ' + age + ' ' + identificationValue + ' ' + commid + ' ' + neigId + ' ' + buildingId + ' ' + apartmentId);
+		$.ajax({
+	        type: "POST",
+			url: "http://202.120.40.111:8888/scas-server/api/people/resident/add",
+			dataType: 'json',
+			crossDomain: true,
+	        data:  JSON.stringify({
+				"name"	:	name,
+				"gender":	gender,
+				"age"	:	age,
+				"identificationValue"	:	identificationValue,
+				"commId"	:	commid,
+				"neighbourId"	:	neigId,
+				"buildingId"	:	buildingId,
+				"apartmentId"	:	apartmentId,
+	        }),
+	        contentType: "application/json",
+	        success: function(d) {
+				alert('success');
+				if(d.code == 0){
+					$("#name" + i).attr('disabled',true);
+					$("#genger" + i).attr('disabled',true);
+					$("#age" + i).attr('disabled',true);
+					$("#identificationValue" + i).attr('identificationValue',true);
+				}else{
+					alert(d.msg);
+				}
+	        },
+			
+	        error: function(error) {
+				alert('error');
+	            console.log('Oops')
+	        }
+	    })
+	}
+	
+</script>
 <!-- EXTRA_STYLE -->
 <style>
     .form-horizontal img{
