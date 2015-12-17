@@ -195,7 +195,7 @@
 	})
 	
 	function buildSub(i){
-		alert("submit now ...");
+//		alert("submit now ...");
 		var neigId = GetQueryString("neigId");
 		var buildName = $('#buildName' + i).val()
 		var buildDesc = $('#buildDesc' + i).val()
@@ -212,7 +212,7 @@
 	        }),
 	        contentType: "application/json",
 	        success: function(d) {
-				alert('success');
+//				alert('success');
 				if(d.code == 0){
 					$("#btn_build" + i).attr('disabled',true);
 					$("#buildName" + i).attr('disabled',true);

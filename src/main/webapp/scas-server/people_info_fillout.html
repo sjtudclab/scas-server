@@ -278,7 +278,7 @@
 	})
 	
 	function peopleSub(i){
-		alert("submit now ...");
+//		alert("submit now ...");
 		var commid = GetQueryString("commid");
 		var neigId = $('#select_province').val();
 		var buildingId = $('#select_city').val();
@@ -288,7 +288,7 @@
 		var age = $('#age' + i).val()
 		var identificationValue = $('#identificationValue' + i).val()
 		
-		alert(name + ' ' + gender + ' ' + age + ' ' + identificationValue + ' ' + commid + ' ' + neigId + ' ' + buildingId + ' ' + apartmentId);
+//		alert(name + ' ' + gender + ' ' + age + ' ' + identificationValue + ' ' + commid + ' ' + neigId + ' ' + buildingId + ' ' + apartmentId);
 		$.ajax({
 	        type: "POST",
 			url: "http://202.120.40.111:8888/scas-server/api/people/resident/add",
@@ -306,7 +306,7 @@
 	        }),
 	        contentType: "application/json",
 	        success: function(d) {
-				alert('success');
+//				alert('success');
 				if(d.code == 0){
 					$("#name" + i).attr('disabled',true);
 					$("#genger" + i).attr('disabled',true);

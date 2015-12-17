@@ -230,7 +230,7 @@
 	})
 	
 	function apartSub(i){
-		alert("submit now ...");
+//		alert("submit now ...");
 		var buildingId = GetQueryString("buildingId");
 		var name = $('#name' + i).val()
 		var ownerId = $('#ownerId' + i).val()
@@ -249,7 +249,7 @@
 	        }),
 	        contentType: "application/json",
 	        success: function(d) {
-				alert('success');
+//				alert('success');
 				if(d.code == 0){
 					$("#name" + i).attr('disabled',true);
 					$("#ownerId" + i).attr('disabled',true);

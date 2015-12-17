@@ -328,7 +328,7 @@
 	})
 
 	function neigSub(i){
-		alert("submit now ...");
+//		alert("submit now ...");
 		var neigName = $('#neigName' + i).val()
 		var neigAddress = $('#neigAddress' + i).val()
 		
@@ -346,7 +346,7 @@
 	        }),
 	        contentType: "application/json",
 	        success: function(d) {
-				alert('success');
+//				alert('success');
 				if(d.code == 0){
 					$("#btn_neig" + i).hide()
 					$("#neigName" + i).attr('disabled',true);
@@ -372,7 +372,7 @@
 	}
 	
 	function mercSub(i){
-		alert("submit now ...");
+//		alert("submit now ...");
 		var mercName = $('#mercName' + i).val()
 		var mercAddress = $('#mercAddress' + i).val()
 		var mercNote = $('#mercNote' + i).val()
@@ -391,7 +391,7 @@
 	        }),
 	        contentType: "application/json",
 	        success: function(d) {
-				alert('success');
+//				alert('success');
 				if(d.code == 0){
 					$("#btn_merc" + i).attr('disabled',true);
 					$("#mercName" + i).attr('disabled',true);
@@ -412,7 +412,7 @@
 	}
 
 	function deviSub(i){
-		alert("submit now ...");
+//		alert("submit now ...");
 		var deviID = $('#deviID' + i).val()
 		var deviType = $('#deviType' + i).val()
 		var mercID = $('#deviMID' + i).val()
@@ -433,7 +433,7 @@
 	        }),
 	        contentType: "application/json",
 	        success: function(d) {
-				alert('success');
+//				alert('success');
 				if(d.code == 0){
 				//	$("#btn_build" + i).attr('disabled',true);
 				//	$("#buildName" + i).attr('disabled',true);

@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4" >
-        <div ng-app = "login" ng-controller = "userctrl">
+        <div>
             <h1>智慧社区应用服务门户</h1>
             <h3>请选择社区居委会</h3>
             <form class="form-horizontal" id="th_form_resident">
@@ -33,7 +33,7 @@
                     <label class="col-sm-3 control-label" for="select_gender">省/直辖市</label>
                     <div class="col-sm-9">
                         <select class="form-control" id="select_province" genderVal="1">
-                            <option value="0">上海</option>
+                            <option value="0"></option>
                         </select>
                     </div>
                 </div>
@@ -41,8 +41,7 @@
                     <label class="col-sm-3 control-label" for="select_gender">市/地区</label>
                     <div class="col-sm-9">
                         <select class="form-control" id="select_city" genderVal="1">
-                            <option value="0">上海市</option>
-                            <option value="1">上海市县</option>
+                            <option value="0"></option>
                         </select>
                     </div>
                 </div>
@@ -50,7 +49,7 @@
                     <label class="col-sm-3 control-label" for="select_gender">县/市辖区</label>
                     <div class="col-sm-9">
                         <select class="form-control" id="select_county" genderVal="1">
-                            <option value="0">杨浦区</option>
+                            <option value="0"></option>
                         </select>
                     </div>
                 </div>
@@ -82,95 +81,77 @@
 <!-- FOOTER -->
 <!-- EXTRA_STYLE -->
 <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script -->
+<script src="resources/js/constant.js"></script>
 <script>
-    /*$(document).ready(function(){
-		/*
-        if ($.cookie("rememberMe") == "true") {
-            $("#ckRememberMe").attr("checked", true);
-            $("#inputUsername").val($.cookie("username"));
-            $("#inputPassword").val($.cookie("password"));
+    var gbxzqh;
+    //获取行政区划码
+    $.ajax({
+        type: "POST",
+        url: "http://202.120.40.111:8888/scas-server/api/metadata/gbxzqh",
+        crossDomain: true,
+        contentType: "application/json",
+        success: function(data) {
+            if(data.code == 0){
+                gbxzqh = data['data']
+            }else{
+                alert('/metadata/gbxzqh get code!=0, msg:' + data.msg);
+            }
+        },
+        error: function(error) {
+            alert('load /metadata/gbxzqh error');
         }
-        postSigninInfo()
-    })*/
-    /*function saveUserInfo() {
-		/*
-        if ( $("#ckRememberMe").attr("checked") == "checked") {
-            var username = $("#inputUsername").val();
-            var password = $("#inputPassword").val();
-            $.cookie("rememberMe", "true", { expires: 3 }); // 存储一个带3天期限的 cookie
-            $.cookie("username", username, { expires: 3 });
-            $.cookie("password", password, { expires: 3 });
-        } else {
-            $.cookie("rememberMe", "false", { expires: -1 });   // 删除cookie
-            $.cookie("username", '', { expires: -1 });
-            $.cookie("password", '', { expires: -1 });
+    })
+    //用数据填充省份
+    $.each(provinces, function(index, provinceObj){
+        $("#select_province").append('<option value="' +
+                provinceObj["province_code"] + '">' +
+                provinceObj["province"] + '</option>')
+    })
+    var province_code;
+    //选中省份，填充市
+    $("#select_province").change(function(){
+        province_code = $(this).children("option:selected").val()
+        if(province_code == 31){
+            $('#select_city').append('<option value="01">上海市</option>')
+                    .append('<option value="02">上海市县</option>')
         }
-        return true;
-			
-    }*/
-    var app = angular.module('login',[]);
-    app.controller('userctrl', ['$scope','$http',function login($scope, $http){
-        $scope.login_confirm = function(){
-            alert('login now...');
-            $http({
-                method: "POST",
-                url:    "http://202.120.40.111:8888/scas-server/api/signin",
-                data:   JSON.stringify({    
-                            "adminname":    $scope.inputUsername,
-                            "password":     $scope.inputPassword
-                        })
-            }).
-            success(function(data){
-                alert('success');
-                    if(data.code == 0){
-                        console.log('Redirect to homepage')
-                        window.location.href="home.html";
-                    }else{
-                        alert(data.msg);
-                        //if(data.code == 5003){
-                        //  window.location.href="./signin";
-                        //}
-                    }
-            }).
-            error(function(data){
-                alert("error");
-            });
+    })
+    var city_code;
+    //选中市，填充县
+    $("#select_city").change(function(){
+        city_code = $(this).children("option:selected").val()
+        if(city_code == '01'){
+            $('#select_county').append('<option value="01">杨浦区</option>')
         }
-    }]);
-    /*angular.module('login', []).controller('userctrl', ['$scope','$http',function login($scope,$http){
-    	$scope.login_confirm = function() {
-            var ddata = JSON.stringify({
-                    "adminname":$scope.inputUsername,
-                    "password":$scope.inputPassword
-                })
-	        $http({
-	            method: "POST",
-				url: "http://202.120.40.111:8888/scas-server/api/signin",
-				//dataType: 'json',
-	            data:  ddata
-	            })
-            .success(function(data){
-					alert(data.code);
-					if(data.code == 0){
-						console.log('Redirect to homepage')
-						window.location.href="./home.html";
-					}else{
-						alert(data.msg);
-						//if(data.code == 5003){
-						//	window.location.href="./signin";
-						//}
-					}
-	            })
-            .error(function() {
-                    alert("error");
-					//alert(data.code);
-	                console.log('Oops')
-                    alert("error");
-	            });
-	        
-        	
-    	}
-    }]);*/
+    })
+    var county_code;
+    //选中县，填充乡镇
+    $("#select_county").change(function(){
+        county_code = $(this).children("option:selected").val()
+        if(county_code == '01'){
+            //用数据填充乡镇
+            $.each(towns, function(index, townObj){
+                $("#select_town").append('<option value="' +
+                        townObj["town_code"] + '">' +
+                        townObj["town"] + '</option>')
+            })
+        }
+    })
+    var town_code;
+    //选中乡镇，填充居委会、村委会
+    $("#select_town").change(function(){
+        town_code = $(this).children("option:selected").val()
+        //先清空
+        $("#select_community").empty()
+        //用数据填充居委会、村委会
+        $.each(gbxzqh, function(index, xzqhObj){
+            if(xzqhObj['townCode'] == town_code){
+                $("#select_community").append('<option value="' +
+                        xzqhObj["communityCode"] + '">' +
+                        xzqhObj["community"] + '</option>')
+            }
+        })
+    })
 </script>
 </body>
 </html>

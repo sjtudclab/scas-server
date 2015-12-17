@@ -25,7 +25,7 @@ angular.module('myApp', []).controller('myCtrl', ['$scope','$templateCache', fun
     "<li><h4 class='sub-header'>社区管理</h4></li>"+
     "<li><a href='./community_info_fillout.html' >社区基本信息<span class='sr-only'>(current)</span></a></li>"+
     "<li><a href='./people_info_fillout.html' >人员基本信息</a></li>"+
-    "<li><a href='./service_info_fillout.html' >微服务配置</a></li>"+
+    "<li><a href='./service_info_fillout.html' >应用服务配置</a></li>"+
     
 "</ul>"+
 "<ul class='nav nav-sidebar'>"+

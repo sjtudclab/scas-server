@@ -89,7 +89,7 @@
     var app = angular.module('login',[]);
     app.controller('userctrl', ['$scope','$http',function login($scope, $http){
         $scope.login_confirm = function(){
-            alert('login now...');
+//            alert('login now...');
             $http({
                 method: "POST",
                 url:    "http://202.120.40.111:8888/scas-server/api/admin/signin",
@@ -99,16 +99,16 @@
                         })
             }).
             success(function(data){
-                alert('success');
-                    if(data.code == 0){
-                        console.log('Redirect to homepage')
-                        window.location.href="home.html";
-                    }else{
-                        alert(data.msg);
-                        //if(data.code == 5003){
-                        //  window.location.href="./signin";
-                        //}
-                    }
+//                alert('success');
+                if(data.code == 0){
+                    console.log('Redirect to homepage')
+                    window.location.href="home.html";
+                }else{
+                    alert(data.msg);
+                    //if(data.code == 5003){
+                    //  window.location.href="./signin";
+                    //}
+                }
             }).
             error(function(data){
                 alert("error");
