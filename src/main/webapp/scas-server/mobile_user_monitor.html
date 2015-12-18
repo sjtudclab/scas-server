@@ -117,7 +117,6 @@
 <script src="resources/js/constant.js"></script>
 <script>
     $(document).ready(function(){
-	alert('s');
 		var commid = 1;
 		
 		var tb_onli = $('#tbody_online_status');
@@ -133,11 +132,15 @@
 	        }),
 	        contentType: "application/json",
 	        success: function(d) {
-				alert('success');
+//				alert('success');
 				if(d.code == 0){
 			//		alert(d.data[0].neigName);
 					for(var i = 0;i < d.data.length;i++){
-						tb_onli.append('<tr><td>'+ 1 +'</td><td>'+ d.data[i].userId +'</td><td>'+ d.data[i].status +'</td><td>'+ d.data[i].userName+'</td></tr>');
+                        var status;
+                        if(String(d.data[i].status) == "false") status = "离线"
+                        else status = "在线"
+						tb_onli.append('<tr><td>'+ 1 +'</td><td>'+ d.data[i].userId +'</td><td>'+ d.data[i].userName +'</td><td>'+
+                                status +'</td></tr>');
 					}
 				}else{
 					alert(d.msg);
